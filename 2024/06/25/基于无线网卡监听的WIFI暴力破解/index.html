@@ -6,18 +6,31 @@
   
   <title>基于无线网卡监听的WIFI暴力破解 | demoAlitalia的blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="tags: [笔记]基于无线网卡监听的WIFI暴力破解1、用到的工具 kali(Aircrack-ng) 一块无线监听网卡  ![一块无线监听网卡](F:\原E盘\迅雷下载\web security  study note\浅谈WIFI破解的利用场景及手法\一块无线监听网卡-17181092259909.jpg) 2、使用场景 没流量了 近源爆破 esp-8266——&gt;wifi钓鱼 待添加">
+  <meta name="description" content="tags: [笔记]基于无线网卡监听的WIFI暴力破解1、用到的工具 kali(Aircrack-ng) 一块无线监听网卡   2、使用场景 没流量了 近源爆破 esp-8266——&gt;wifi钓鱼 待添加  3、操作手法1一插二看三爆破  1、连接监听网卡——物理插入  2、连接虚拟网卡——逻辑插入  因为kali用的虚拟机，所以此时需要在虚拟机vmware中重新连接一次     3、if">
 <meta property="og:type" content="article">
 <meta property="og:title" content="基于无线网卡监听的WIFI暴力破解">
 <meta property="og:url" content="http://example.com/2024/06/25/%E5%9F%BA%E4%BA%8E%E6%97%A0%E7%BA%BF%E7%BD%91%E5%8D%A1%E7%9B%91%E5%90%AC%E7%9A%84WIFI%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/index.html">
 <meta property="og:site_name" content="demoAlitalia的blog">
-<meta property="og:description" content="tags: [笔记]基于无线网卡监听的WIFI暴力破解1、用到的工具 kali(Aircrack-ng) 一块无线监听网卡  ![一块无线监听网卡](F:\原E盘\迅雷下载\web security  study note\浅谈WIFI破解的利用场景及手法\一块无线监听网卡-17181092259909.jpg) 2、使用场景 没流量了 近源爆破 esp-8266——&gt;wifi钓鱼 待添加">
+<meta property="og:description" content="tags: [笔记]基于无线网卡监听的WIFI暴力破解1、用到的工具 kali(Aircrack-ng) 一块无线监听网卡   2、使用场景 没流量了 近源爆破 esp-8266——&gt;wifi钓鱼 待添加  3、操作手法1一插二看三爆破  1、连接监听网卡——物理插入  2、连接虚拟网卡——逻辑插入  因为kali用的虚拟机，所以此时需要在虚拟机vmware中重新连接一次     3、if">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images%5C%E6%B5%85%E8%B0%88WIFI%E7%A0%B4%E8%A7%A3%E7%9A%84%E5%88%A9%E7%94%A8%E5%9C%BA%E6%99%AF%E5%8F%8A%E6%89%8B%E6%B3%95%5C%E4%B8%80%E5%9D%97%E6%97%A0%E7%BA%BF%E7%9B%91%E5%90%AC%E7%BD%91%E5%8D%A1-17181092259909.jpg">
+<meta property="og:image" content="http://example.com/images%5C%E6%B5%85%E8%B0%88WIFI%E7%A0%B4%E8%A7%A3%E7%9A%84%E5%88%A9%E7%94%A8%E5%9C%BA%E6%99%AF%E5%8F%8A%E6%89%8B%E6%B3%95%5C%E8%BF%9E%E6%8E%A5%E8%99%9A%E6%8B%9F%E7%BD%91%E5%8D%A1-%E7%89%A9%E7%90%86%E6%8F%92%E5%85%A5.jpg">
+<meta property="og:image" content="http://example.com/images%5C%E6%B5%85%E8%B0%88WIFI%E7%A0%B4%E8%A7%A3%E7%9A%84%E5%88%A9%E7%94%A8%E5%9C%BA%E6%99%AF%E5%8F%8A%E6%89%8B%E6%B3%95%5Ckali-wifi%E7%BD%91%E5%8D%A1%E9%85%8D%E7%BD%AE.png">
+<meta property="og:image" content="http://example.com/images%5C%E6%B5%85%E8%B0%88WIFI%E7%A0%B4%E8%A7%A3%E7%9A%84%E5%88%A9%E7%94%A8%E5%9C%BA%E6%99%AF%E5%8F%8A%E6%89%8B%E6%B3%95%5C%E7%9B%91%E5%90%AC%E7%BD%91%E5%8D%A1.png">
+<meta property="og:image" content="http://example.com/images%5C%E6%B5%85%E8%B0%88WIFI%E7%A0%B4%E8%A7%A3%E7%9A%84%E5%88%A9%E7%94%A8%E5%9C%BA%E6%99%AF%E5%8F%8A%E6%89%8B%E6%B3%95%5C%E6%9F%A5%E7%9C%8B%E5%BD%93%E5%89%8D%E5%8F%AF%E7%94%A8%E7%9B%91%E5%90%AC%E7%BD%91%E5%8D%A1.png">
+<meta property="og:image" content="http://example.com/images%5C%E6%B5%85%E8%B0%88WIFI%E7%A0%B4%E8%A7%A3%E7%9A%84%E5%88%A9%E7%94%A8%E5%9C%BA%E6%99%AF%E5%8F%8A%E6%89%8B%E6%B3%95%5C%E5%BC%80%E5%90%AF%E7%9B%91%E5%90%AC.png">
+<meta property="og:image" content="http://example.com/images%5C%E6%B5%85%E8%B0%88WIFI%E7%A0%B4%E8%A7%A3%E7%9A%84%E5%88%A9%E7%94%A8%E5%9C%BA%E6%99%AF%E5%8F%8A%E6%89%8B%E6%B3%95%5C%E5%8F%AF%E4%BB%A5%E7%9C%8B%E5%88%B0%E5%B7%B2%E5%BC%80%E5%90%AF%E7%9B%91%E5%90%AC%E6%A8%A1%E5%BC%8F.png">
+<meta property="og:image" content="http://example.com/images%5C%E6%B5%85%E8%B0%88WIFI%E7%A0%B4%E8%A7%A3%E7%9A%84%E5%88%A9%E7%94%A8%E5%9C%BA%E6%99%AF%E5%8F%8A%E6%89%8B%E6%B3%95%5Cimage-20240611204515550.png">
+<meta property="og:image" content="http://example.com/images%5C%E6%B5%85%E8%B0%88WIFI%E7%A0%B4%E8%A7%A3%E7%9A%84%E5%88%A9%E7%94%A8%E5%9C%BA%E6%99%AF%E5%8F%8A%E6%89%8B%E6%B3%95%5C%E6%8A%93%E5%8F%96%E6%8F%A1%E6%89%8B%E5%8C%85.png">
+<meta property="og:image" content="http://example.com/images%5C%E6%B5%85%E8%B0%88WIFI%E7%A0%B4%E8%A7%A3%E7%9A%84%E5%88%A9%E7%94%A8%E5%9C%BA%E6%99%AF%E5%8F%8A%E6%89%8B%E6%B3%95%5C%E6%8A%93%E5%8F%96%E6%8F%A1%E6%89%8B%E5%8C%852.png">
+<meta property="og:image" content="http://example.com/images%5C%E6%B5%85%E8%B0%88WIFI%E7%A0%B4%E8%A7%A3%E7%9A%84%E5%88%A9%E7%94%A8%E5%9C%BA%E6%99%AF%E5%8F%8A%E6%89%8B%E6%B3%95%5C%E5%BC%BA%E5%88%B6%E8%BF%9E%E6%8E%A5%E6%8A%93%E5%88%B0%E6%8F%A1%E6%89%8B%E5%8C%85.png">
+<meta property="og:image" content="http://example.com/images%5C%E6%B5%85%E8%B0%88WIFI%E7%A0%B4%E8%A7%A3%E7%9A%84%E5%88%A9%E7%94%A8%E5%9C%BA%E6%99%AF%E5%8F%8A%E6%89%8B%E6%B3%95%5C%E6%92%9E%E5%BA%93%E6%88%90%E5%8A%9F.png">
 <meta property="article:published_time" content="2024-06-25T06:40:55.000Z">
-<meta property="article:modified_time" content="2026-05-07T09:50:34.035Z">
+<meta property="article:modified_time" content="2026-05-07T10:33:54.537Z">
 <meta property="article:author" content="zeropioneer">
 <meta property="article:tag" content="笔记">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images%5C%E6%B5%85%E8%B0%88WIFI%E7%A0%B4%E8%A7%A3%E7%9A%84%E5%88%A9%E7%94%A8%E5%9C%BA%E6%99%AF%E5%8F%8A%E6%89%8B%E6%B3%95%5C%E4%B8%80%E5%9D%97%E6%97%A0%E7%BA%BF%E7%9B%91%E5%90%AC%E7%BD%91%E5%8D%A1-17181092259909.jpg">
   
     <link rel="alternate" href="/atom.xml" title="demoAlitalia的blog" type="application/atom+xml">
   
@@ -101,7 +114,7 @@
 <li>kali(Aircrack-ng)</li>
 <li>一块无线监听网卡</li>
 </ul>
-<p>![一块无线监听网卡](F:\原E盘\迅雷下载\web security  study note\浅谈WIFI破解的利用场景及手法\一块无线监听网卡-17181092259909.jpg)</p>
+<p><img src="/../images%5C%E6%B5%85%E8%B0%88WIFI%E7%A0%B4%E8%A7%A3%E7%9A%84%E5%88%A9%E7%94%A8%E5%9C%BA%E6%99%AF%E5%8F%8A%E6%89%8B%E6%B3%95%5C%E4%B8%80%E5%9D%97%E6%97%A0%E7%BA%BF%E7%9B%91%E5%90%AC%E7%BD%91%E5%8D%A1-17181092259909.jpg" alt="一块无线监听网卡"></p>
 <h4 id="2、使用场景"><a href="#2、使用场景" class="headerlink" title="2、使用场景"></a>2、使用场景</h4><ul>
 <li><del>没流量了</del></li>
 <li>近源爆破</li>
@@ -111,21 +124,21 @@
 <h4 id="3、操作手法"><a href="#3、操作手法" class="headerlink" title="3、操作手法"></a>3、操作手法</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">一插二看三爆破</span><br></pre></td></tr></table></figure>
 
 <p>1、连接监听网卡——物理插入</p>
-<p>![连接虚拟网卡-物理插入](F:\原E盘\迅雷下载\web security  study note\浅谈WIFI破解的利用场景及手法\连接虚拟网卡-物理插入.jpg)</p>
+<p><img src="/../images%5C%E6%B5%85%E8%B0%88WIFI%E7%A0%B4%E8%A7%A3%E7%9A%84%E5%88%A9%E7%94%A8%E5%9C%BA%E6%99%AF%E5%8F%8A%E6%89%8B%E6%B3%95%5C%E8%BF%9E%E6%8E%A5%E8%99%9A%E6%8B%9F%E7%BD%91%E5%8D%A1-%E7%89%A9%E7%90%86%E6%8F%92%E5%85%A5.jpg" alt="连接虚拟网卡-物理插入"></p>
 <p>2、连接虚拟网卡——逻辑插入</p>
 <ul>
 <li>因为kali用的虚拟机，所以此时需要在虚拟机vmware中重新连接一次</li>
 </ul>
-<p>  ![kali-wifi网卡配置](F:\原E盘\迅雷下载\web security  study note\浅谈WIFI破解的利用场景及手法\kali-wifi网卡配置.png)</p>
+<p>  <img src="/../images%5C%E6%B5%85%E8%B0%88WIFI%E7%A0%B4%E8%A7%A3%E7%9A%84%E5%88%A9%E7%94%A8%E5%9C%BA%E6%99%AF%E5%8F%8A%E6%89%8B%E6%B3%95%5Ckali-wifi%E7%BD%91%E5%8D%A1%E9%85%8D%E7%BD%AE.png" alt="kali-wifi网卡配置"></p>
 <p>3、ifconfig 查看是监听网卡否插入，观察是否出现wlan0，airmon-ng  查看网卡状态</p>
-<p>![监听网卡](F:\原E盘\迅雷下载\web security  study note\浅谈WIFI破解的利用场景及手法\监听网卡.png)</p>
-<p>![查看当前可用监听网卡](F:\原E盘\迅雷下载\web security  study note\浅谈WIFI破解的利用场景及手法\查看当前可用监听网卡.png)</p>
+<p><img src="/../images%5C%E6%B5%85%E8%B0%88WIFI%E7%A0%B4%E8%A7%A3%E7%9A%84%E5%88%A9%E7%94%A8%E5%9C%BA%E6%99%AF%E5%8F%8A%E6%89%8B%E6%B3%95%5C%E7%9B%91%E5%90%AC%E7%BD%91%E5%8D%A1.png" alt="监听网卡"></p>
+<p><img src="/../images%5C%E6%B5%85%E8%B0%88WIFI%E7%A0%B4%E8%A7%A3%E7%9A%84%E5%88%A9%E7%94%A8%E5%9C%BA%E6%99%AF%E5%8F%8A%E6%89%8B%E6%B3%95%5C%E6%9F%A5%E7%9C%8B%E5%BD%93%E5%89%8D%E5%8F%AF%E7%94%A8%E7%9B%91%E5%90%AC%E7%BD%91%E5%8D%A1.png" alt="查看当前可用监听网卡"></p>
 <p>4、airmon-ng start waln0 开启监听模式</p>
-<p>![开启监听](F:\原E盘\迅雷下载\web security  study note\浅谈WIFI破解的利用场景及手法\开启监听.png)</p>
+<p><img src="/../images%5C%E6%B5%85%E8%B0%88WIFI%E7%A0%B4%E8%A7%A3%E7%9A%84%E5%88%A9%E7%94%A8%E5%9C%BA%E6%99%AF%E5%8F%8A%E6%89%8B%E6%B3%95%5C%E5%BC%80%E5%90%AF%E7%9B%91%E5%90%AC.png" alt="开启监听"></p>
 <p> 此时，再次执行ifconfig命令，可以看到网卡已经变为wlan0mon，代表已经开启监听。</p>
-<p>![可以看到已开启监听模式](F:\原E盘\迅雷下载\web security  study note\浅谈WIFI破解的利用场景及手法\可以看到已开启监听模式.png)</p>
+<p><img src="/../images%5C%E6%B5%85%E8%B0%88WIFI%E7%A0%B4%E8%A7%A3%E7%9A%84%E5%88%A9%E7%94%A8%E5%9C%BA%E6%99%AF%E5%8F%8A%E6%89%8B%E6%B3%95%5C%E5%8F%AF%E4%BB%A5%E7%9C%8B%E5%88%B0%E5%B7%B2%E5%BC%80%E5%90%AF%E7%9B%91%E5%90%AC%E6%A8%A1%E5%BC%8F.png" alt="可以看到已开启监听模式"></p>
 <p>5、airodump-ng wlan0mon  开始扫描设备，探测周围存活可用网络。（我的这个监听网卡仅能探测2.4G网络的，硬件不同，能探测到的频率也不同），随后确定要破解的wifi的bissd 和 ch 和 essid （目前大多数wifi都是wpa2加密的）</p>
-<p>![image-20240611204515550](F:\原E盘\迅雷下载\web security  study note\浅谈WIFI破解的利用场景及手法\image-20240611204515550.png)</p>
+<p><img src="/../images%5C%E6%B5%85%E8%B0%88WIFI%E7%A0%B4%E8%A7%A3%E7%9A%84%E5%88%A9%E7%94%A8%E5%9C%BA%E6%99%AF%E5%8F%8A%E6%89%8B%E6%B3%95%5Cimage-20240611204515550.png" alt="image-20240611204515550"></p>
 <ul>
 <li>常见的WIFI加密模式</li>
 </ul>
@@ -134,25 +147,25 @@
 <p>6、准备抓取握手包</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">airodump-ng --ivs --bssid 对应ID -w 输出位置 -c 对应信道 wlan0mon</span><br><span class="line">airodump-ng  -c 信道 --bssid 对应id -w 输出位置 wlan0mon</span><br></pre></td></tr></table></figure>
 
-<p>![抓取握手包](F:\原E盘\迅雷下载\web security  study note\浅谈WIFI破解的利用场景及手法\抓取握手包.png)</p>
-<p>![抓取握手包2](F:\原E盘\迅雷下载\web security  study note\浅谈WIFI破解的利用场景及手法\抓取握手包2.png)</p>
+<p><img src="/../images%5C%E6%B5%85%E8%B0%88WIFI%E7%A0%B4%E8%A7%A3%E7%9A%84%E5%88%A9%E7%94%A8%E5%9C%BA%E6%99%AF%E5%8F%8A%E6%89%8B%E6%B3%95%5C%E6%8A%93%E5%8F%96%E6%8F%A1%E6%89%8B%E5%8C%85.png" alt="抓取握手包"></p>
+<p><img src="/../images%5C%E6%B5%85%E8%B0%88WIFI%E7%A0%B4%E8%A7%A3%E7%9A%84%E5%88%A9%E7%94%A8%E5%9C%BA%E6%99%AF%E5%8F%8A%E6%89%8B%E6%B3%95%5C%E6%8A%93%E5%8F%96%E6%8F%A1%E6%89%8B%E5%8C%852.png" alt="抓取握手包2"></p>
 <p>7、如果抓不到握手包，就强制连接把对方踢下线，对方会重新代着正确的密码去连接，我们此时就会抓到正确的握手包。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aireplay-ng -0 1 -a C8:3A:35:70:21:61 -c 5C:F7:C3:92:0A:DD wlan0mon</span><br></pre></td></tr></table></figure>
 
 <p>​	-0 模式，后面跟你要攻击的次数我给的是20，如果过大对方则会一直连接不上。</p>
 <p>​	-a 无线APmac地址</p>
 <p>​	-c 客户端mac地址</p>
-<p>![强制连接抓到握手包](F:\原E盘\迅雷下载\web security  study note\浅谈WIFI破解的利用场景及手法\强制连接抓到握手包.png)</p>
+<p><img src="/../images%5C%E6%B5%85%E8%B0%88WIFI%E7%A0%B4%E8%A7%A3%E7%9A%84%E5%88%A9%E7%94%A8%E5%9C%BA%E6%99%AF%E5%8F%8A%E6%89%8B%E6%B3%95%5C%E5%BC%BA%E5%88%B6%E8%BF%9E%E6%8E%A5%E6%8A%93%E5%88%B0%E6%8F%A1%E6%89%8B%E5%8C%85.png" alt="强制连接抓到握手包"></p>
 <p>8、利用字典爆破握手包</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aircrack-ng  -w 字典路径  握手包路径</span><br></pre></td></tr></table></figure>
 
-<p>![撞库成功](F:\原E盘\迅雷下载\web security  study note\浅谈WIFI破解的利用场景及手法\撞库成功.png)</p>
+<p><img src="/../images%5C%E6%B5%85%E8%B0%88WIFI%E7%A0%B4%E8%A7%A3%E7%9A%84%E5%88%A9%E7%94%A8%E5%9C%BA%E6%99%AF%E5%8F%8A%E6%89%8B%E6%B3%95%5C%E6%92%9E%E5%BA%93%E6%88%90%E5%8A%9F.png" alt="撞库成功"></p>
 <h4 id="4、参考连接"><a href="#4、参考连接" class="headerlink" title="4、参考连接"></a>4、参考连接</h4><p>0x01:<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2028958">https://cloud.tencent.com/developer/article/2028958</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/06/25/%E5%9F%BA%E4%BA%8E%E6%97%A0%E7%BA%BF%E7%BD%91%E5%8D%A1%E7%9B%91%E5%90%AC%E7%9A%84WIFI%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/" data-id="cuidQ1n3yQvndzoClH8-qQA_T" data-title="基于无线网卡监听的WIFI暴力破解" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://example.com/2024/06/25/%E5%9F%BA%E4%BA%8E%E6%97%A0%E7%BA%BF%E7%BD%91%E5%8D%A1%E7%9B%91%E5%90%AC%E7%9A%84WIFI%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/" data-id="cuidW_9rv6sUNBOoqGBw7FUt-" data-title="基于无线网卡监听的WIFI暴力破解" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       

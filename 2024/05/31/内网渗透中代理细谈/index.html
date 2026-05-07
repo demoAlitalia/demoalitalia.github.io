@@ -6,29 +6,43 @@
   
   <title>内网渗透中代理细谈 | demoAlitalia的blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="tags: [笔记]代理浅谈之内网渗透前言代理隧道是内网渗透测试中常用的技术手段，它允许攻击者通过一个已受控的外网服务器来访问内网中的其他设备。在渗透测试的后渗透阶段，攻击者通常无法直接从外网访问内网资源。这时，通过设置端口转发或搭建代理服务器，如Socks代理，可以构建一个通道，使得攻击者能够穿透网络边界，进而横向移动到内网的其他主机。  0、代理（PROXY）概念：委托人 使用场景：加强隐私">
+  <meta name="description" content="tags: [笔记]代理浅谈之内网渗透前言代理隧道是内网渗透测试中常用的技术手段，它允许攻击者通过一个已受控的外网服务器来访问内网中的其他设备。在渗透测试的后渗透阶段，攻击者通常无法直接从外网访问内网资源。这时，通过设置端口转发或搭建代理服务器，如Socks代理，可以构建一个通道，使得攻击者能够穿透网络边界，进而横向移动到内网的其他主机。 0、代理（PROXY）概念：委托人 使用场景：加强隐私，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="内网渗透中代理细谈">
 <meta property="og:url" content="http://example.com/2024/05/31/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E4%B8%AD%E4%BB%A3%E7%90%86%E7%BB%86%E8%B0%88/index.html">
 <meta property="og:site_name" content="demoAlitalia的blog">
-<meta property="og:description" content="tags: [笔记]代理浅谈之内网渗透前言代理隧道是内网渗透测试中常用的技术手段，它允许攻击者通过一个已受控的外网服务器来访问内网中的其他设备。在渗透测试的后渗透阶段，攻击者通常无法直接从外网访问内网资源。这时，通过设置端口转发或搭建代理服务器，如Socks代理，可以构建一个通道，使得攻击者能够穿透网络边界，进而横向移动到内网的其他主机。  0、代理（PROXY）概念：委托人 使用场景：加强隐私">
+<meta property="og:description" content="tags: [笔记]代理浅谈之内网渗透前言代理隧道是内网渗透测试中常用的技术手段，它允许攻击者通过一个已受控的外网服务器来访问内网中的其他设备。在渗透测试的后渗透阶段，攻击者通常无法直接从外网访问内网资源。这时，通过设置端口转发或搭建代理服务器，如Socks代理，可以构建一个通道，使得攻击者能够穿透网络边界，进而横向移动到内网的其他主机。 0、代理（PROXY）概念：委托人 使用场景：加强隐私，">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="c:\Users\Lu\AppData\Roaming\Typora\typora-user-images\image-20240514173211735.png">
-<meta property="og:image" content="c:\Users\Lu\AppData\Roaming\Typora\typora-user-images\image-20240514143215281.png">
-<meta property="og:image" content="c:\Users\Lu\AppData\Roaming\Typora\typora-user-images\image-20240514141817313.png">
-<meta property="og:image" content="c:\Users\Lu\AppData\Roaming\Typora\typora-user-images\image-20240514173648333.png">
-<meta property="og:image" content="c:\Users\Lu\AppData\Roaming\Typora\typora-user-images\image-20240513231146353.png">
-<meta property="og:image" content="c:\Users\Lu\AppData\Roaming\Typora\typora-user-images\image-20240513231224977.png">
-<meta property="og:image" content="c:\Users\Lu\AppData\Roaming\Typora\typora-user-images\image-20240513231325234.png">
-<meta property="og:image" content="c:\Users\Lu\AppData\Roaming\Typora\typora-user-images\image-20240513231444790.png">
-<meta property="og:image" content="c:\Users\Lu\AppData\Roaming\Typora\typora-user-images\image-20240513231920293.png">
-<meta property="og:image" content="c:\Users\Lu\AppData\Roaming\Typora\typora-user-images\image-20240513232034143.png">
+<meta property="og:image" content="http://example.com/images/image-20240514143215281.png">
+<meta property="og:image" content="http://example.com/images/image-20240514141817313.png">
+<meta property="og:image" content="http://example.com/images/image-20240514173648333.png">
+<meta property="og:image" content="http://example.com/images%5Cimage-20240513231146353.png">
+<meta property="og:image" content="http://example.com/images%5Cimage-20240513231224977.png">
+<meta property="og:image" content="http://example.com/images%5Cimage-20240513231325234.png">
+<meta property="og:image" content="http://example.com/images%5Cimage-20240513231444790.png">
+<meta property="og:image" content="http://example.com/images%5Cimage-20240513231920293.png">
+<meta property="og:image" content="http://example.com/images%5Cimage-20240513232034143.png">
+<meta property="og:image" content="http://example.com/images%5Csocks%E5%8E%9F%E7%90%86%E5%9B%BE.jpg">
+<meta property="og:image" content="http://example.com/images%5Ckali-IP.png">
+<meta property="og:image" content="http://example.com/images%5C%E9%9D%B6%E6%9C%BA1-ip.png">
+<meta property="og:image" content="http://example.com/images%5C%E9%9D%B6%E6%9C%BA2-ip.png">
+<meta property="og:image" content="http://example.com/images%5C%E8%A6%81%E5%87%86%E5%A4%87%E5%86%99%E8%B7%AF%E7%94%B1.png">
+<meta property="og:image" content="http://example.com/images%5C%E6%97%A0%E6%B3%95%E9%80%9A%E4%BF%A1%E8%AF%81%E6%98%8E.png">
+<meta property="og:image" content="http://example.com/images/%E6%B7%BB%E5%8A%A0%E8%B7%AF%E7%94%B1.png">
+<meta property="og:image" content="http://example.com/images%5C%E9%85%8D%E7%BD%AEsocks.png">
+<meta property="og:image" content="http://example.com/images%5C%E9%85%8D%E7%BD%AE%E6%B3%A8%E6%84%8F.png">
+<meta property="og:image" content="http://example.com/images%5C%E9%85%8D%E7%BD%AE%E6%88%90%E5%8A%9F%E9%AA%8C%E8%AF%81.png">
+<meta property="og:image" content="http://example.com/images%5Cnmap%E6%B5%8B%E8%AF%95socks.png">
+<meta property="og:image" content="http://example.com/images%5C%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7proxychains.png">
+<meta property="og:image" content="http://example.com/images%5Cproxychains4%E8%B7%AF%E5%BE%84.png">
+<meta property="og:image" content="http://example.com/images%5Cproxychains%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.png">
+<meta property="og:image" content="http://example.com/images%5Cproxiffer.png">
 <meta property="article:published_time" content="2024-05-31T06:20:47.000Z">
-<meta property="article:modified_time" content="2026-05-07T09:50:19.235Z">
+<meta property="article:modified_time" content="2026-05-07T10:35:24.922Z">
 <meta property="article:author" content="zeropioneer">
 <meta property="article:tag" content="笔记">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="c:\Users\Lu\AppData\Roaming\Typora\typora-user-images\image-20240514173211735.png">
+<meta name="twitter:image" content="http://example.com/images/image-20240514143215281.png">
   
     <link rel="alternate" href="/atom.xml" title="demoAlitalia的blog" type="application/atom+xml">
   
@@ -109,18 +123,17 @@
       
         <hr>
 <h2 id="tags-笔记"><a href="#tags-笔记" class="headerlink" title="tags: [笔记]"></a>tags: [笔记]</h2><h1 id="代理浅谈之内网渗透"><a href="#代理浅谈之内网渗透" class="headerlink" title="代理浅谈之内网渗透"></a>代理浅谈之内网渗透</h1><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>代理隧道是内网渗透测试中常用的技术手段，它允许攻击者通过一个已受控的外网服务器来访问内网中的其他设备。在渗透测试的后渗透阶段，攻击者通常无法直接从外网访问内网资源。这时，通过设置端口转发或搭建代理服务器，如Socks代理，可以构建一个通道，使得攻击者能够穿透网络边界，进而横向移动到内网的其他主机。</p>
-<p><img src="C:\Users\Lu\AppData\Roaming\Typora\typora-user-images\image-20240514173211735.png" alt="image-20240514173211735"></p>
 <h3 id="0、代理（PROXY）"><a href="#0、代理（PROXY）" class="headerlink" title="0、代理（PROXY）"></a>0、代理（PROXY）</h3><p>概念：<strong>委托人</strong></p>
 <p><strong>使用场景</strong>：加强隐私，保护数据，绕过 限制</p>
 <p>Proxy（代理）是一种网络技术，它允许一个客户端通过另一个服务器（代理服务器）来访问互联网。代理服务器充当客户端和目标服务器之间的中间人，负责转发请求和响应。这种技术通常用于提高安全性、提高性能、绕过地理限制等目的。（来源于讯飞星火回答）</p>
-<p><img src="C:\Users\Lu\AppData\Roaming\Typora\typora-user-images\image-20240514143215281.png" alt="image-20240514143215281"></p>
-<p><img src="C:\Users\Lu\AppData\Roaming\Typora\typora-user-images\image-20240514141817313.png" alt="image-20240514141817313"></p>
+<p><img src="/../images/image-20240514143215281.png" alt="image-20240514143215281"></p>
+<p><img src="/../images/image-20240514141817313.png" alt="image-20240514141817313"></p>
 <ul>
 <li><p>举个栗子</p>
 <ul>
 <li>正好最近在换房子，就拿求租来举例</li>
 </ul>
-<p><img src="C:\Users\Lu\AppData\Roaming\Typora\typora-user-images\image-20240514173648333.png" alt="image-20240514173648333"></p>
+<p><img src="/../images/image-20240514173648333.png" alt="image-20240514173648333"></p>
 </li>
 <li><p>类型</p>
 </li>
@@ -137,20 +150,20 @@
 <p>形象生动的说明：</p>
 </li>
 </ul>
-<p><img src="C:\Users\Lu\AppData\Roaming\Typora\typora-user-images\image-20240513231146353.png" alt="image-20240513231146353"></p>
+<p><img src="/../images%5Cimage-20240513231146353.png" alt="image-20240513231146353"></p>
 <ul>
 <li><strong>举个栗子</strong></li>
 </ul>
 <p>  我利用浏览器插件（SwitchyOmega）配置了http代理，代理服务器为127.0.0.1:8080这个端口，那么相当于我所有浏览器所有要访问互联网的流量都需要先通过代理服务器才会到互联网(如图1-3)。</p>
-<p>  <img src="C:\Users\Lu\AppData\Roaming\Typora\typora-user-images\image-20240513231224977.png" alt="image-20240513231224977"></p>
+<p>  <img src="/../images%5Cimage-20240513231224977.png" alt="image-20240513231224977"></p>
 <p>  ​																											<strong>图1-1</strong></p>
-<p><img src="C:\Users\Lu\AppData\Roaming\Typora\typora-user-images\image-20240513231325234.png" alt="image-20240513231325234"></p>
+<p><img src="/../images%5Cimage-20240513231325234.png" alt="image-20240513231325234"></p>
 <p>​																													 <strong>图1-2</strong></p>
-<p><img src="C:\Users\Lu\AppData\Roaming\Typora\typora-user-images\image-20240513231444790.png" alt="image-20240513231444790"></p>
+<p><img src="/../images%5Cimage-20240513231444790.png" alt="image-20240513231444790"></p>
 <p>​																														<strong>图1-3</strong></p>
-<p><img src="C:\Users\Lu\AppData\Roaming\Typora\typora-user-images\image-20240513231920293.png" alt="image-20240513231920293"></p>
+<p><img src="/../images%5Cimage-20240513231920293.png" alt="image-20240513231920293"></p>
 <p>​																														<strong>图1-4</strong></p>
-<p><img src="C:\Users\Lu\AppData\Roaming\Typora\typora-user-images\image-20240513232034143.png"></p>
+<p><img src="/../images%5Cimage-20240513232034143.png"></p>
 <p>​																														<strong>图1-5</strong></p>
 <ul>
 <li><p>应用场景</p>
@@ -184,7 +197,7 @@
 <ul>
 <li>工作原理图</li>
 </ul>
-<p>![socks原理图](F:\原E盘\迅雷下载\web security  study note\内网渗透中代理细谈\socks原理图.jpg)</p>
+<p><img src="/../images%5Csocks%E5%8E%9F%E7%90%86%E5%9B%BE.jpg" alt="socks原理图"></p>
 <ul>
 <li><p>SOCKS4 VS SOCKS5</p>
 <ul>
@@ -199,11 +212,11 @@
 </ul>
 </li>
 </ul>
-<p>![kali-IP](F:\原E盘\迅雷下载\web security  study note\内网渗透中代理细谈\kali-IP.png)</p>
+<p><img src="/../images%5Ckali-IP.png" alt="kali-IP"></p>
 <p>​																								<strong>图 - 攻击机</strong></p>
-<p>![靶机1-ip](F:\原E盘\迅雷下载\web security  study note\内网渗透中代理细谈\靶机1-ip.png)</p>
+<p><img src="/../images%5C%E9%9D%B6%E6%9C%BA1-ip.png" alt="靶机1-ip"></p>
 <p>​																									<strong>图 - 靶机-1</strong></p>
-<p>![靶机2-ip](F:\原E盘\迅雷下载\web security  study note\内网渗透中代理细谈\靶机2-ip.png)</p>
+<p><img src="/../images%5C%E9%9D%B6%E6%9C%BA2-ip.png" alt="靶机2-ip"></p>
 <p>​																									<strong>图 - 靶机-2</strong></p>
 <ul>
 <li><ul>
@@ -211,26 +224,26 @@
 </ul>
   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">run autoroute -s 10.1.2.0/24</span><br><span class="line">bg</span><br><span class="line">use auxiliary/server/socks_proxy</span><br><span class="line">set srvhost 127.0.0.1</span><br><span class="line">set srvport 1080</span><br><span class="line">run</span><br></pre></td></tr></table></figure>
 
-<p>  ![要准备写路由](F:\原E盘\迅雷下载\web security  study note\内网渗透中代理细谈\要准备写路由.png)</p>
+<p>  <img src="/../images%5C%E8%A6%81%E5%87%86%E5%A4%87%E5%86%99%E8%B7%AF%E7%94%B1.png" alt="要准备写路由"></p>
 <p>  先看下，再没制作和使用代理前，是无法向172.16.13.0&#x2F;24网段进行通信的。</p>
-<p>  ![无法通信证明](F:\原E盘\迅雷下载\web security  study note\内网渗透中代理细谈\无法通信证明.png)</p>
+<p>  <img src="/../images%5C%E6%97%A0%E6%B3%95%E9%80%9A%E4%BF%A1%E8%AF%81%E6%98%8E.png" alt="无法通信证明"></p>
 <p>  添加了对应路由。</p>
-<p>  ![添加路由](F:\原E盘\迅雷下载\web security  study note\内网渗透中代理细谈\添加路由.png)</p>
+<p>  <img src="/../images/%E6%B7%BB%E5%8A%A0%E8%B7%AF%E7%94%B1.png" alt="添加路由"></p>
 <p>  接下来我们使用这个辅助模块：auxiliary&#x2F;server&#x2F;socks_proxy，我配置的参数为，127.0.0.1：1080</p>
-<p>  ![配置socks](F:\原E盘\迅雷下载\web security  study note\内网渗透中代理细谈\配置socks.png)</p>
+<p>  <img src="/../images%5C%E9%85%8D%E7%BD%AEsocks.png" alt="配置socks"></p>
 <p>  这边的配置要和proxychains4.conf的配置要一致。</p>
-<p>  ![配置注意](F:\原E盘\迅雷下载\web security  study note\内网渗透中代理细谈\配置注意.png)</p>
+<p>  <img src="/../images%5C%E9%85%8D%E7%BD%AE%E6%B3%A8%E6%84%8F.png" alt="配置注意"></p>
 <p>  我们再去重新telnet，可以看到是没问题的。</p>
-<p>  ![配置成功验证](F:\原E盘\迅雷下载\web security  study note\内网渗透中代理细谈\配置成功验证.png)</p>
+<p>  <img src="/../images%5C%E9%85%8D%E7%BD%AE%E6%88%90%E5%8A%9F%E9%AA%8C%E8%AF%81.png" alt="配置成功验证"></p>
 <p>  执行Nmap命令</p>
-<p>  ![nmap测试socks](F:\原E盘\迅雷下载\web security  study note\内网渗透中代理细谈\nmap测试socks.png)</p>
+<p>  <img src="/../images%5Cnmap%E6%B5%8B%E8%AF%95socks.png" alt="nmap测试socks"></p>
 </li>
 <li><p>代理链工具：proxychains(Linux)，proxifier(Windows)</p>
-<p>![代理工具proxychains](F:\原E盘\迅雷下载\web security  study note\内网渗透中代理细谈\代理工具proxychains.png)</p>
+<p><img src="/../images%5C%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7proxychains.png" alt="代理工具proxychains"></p>
 <p>proxychains4.conf 默认在&#x2F;etc&#x2F;proxychains4.conf下 </p>
-<p>![proxychains4路径](F:\原E盘\迅雷下载\web security  study note\内网渗透中代理细谈\proxychains4路径.png)</p>
-<p>![proxychains配置文件](F:\原E盘\迅雷下载\web security  study note\内网渗透中代理细谈\proxychains配置文件.png)</p>
-<p>![proxiffer](F:\原E盘\迅雷下载\web security  study note\内网渗透中代理细谈\proxiffer.png)</p>
+<p><img src="/../images%5Cproxychains4%E8%B7%AF%E5%BE%84.png" alt="proxychains4路径"></p>
+<p><img src="/../images%5Cproxychains%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.png" alt="proxychains配置文件"></p>
+<p><img src="/../images%5Cproxiffer.png" alt="proxiffer"></p>
 </li>
 <li><p>端口转发工具：NC，LCX，IOX 等等</p>
 </li>
@@ -259,7 +272,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/05/31/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E4%B8%AD%E4%BB%A3%E7%90%86%E7%BB%86%E8%B0%88/" data-id="cuidBEXx9jjvETgeSBIzHFQ98" data-title="内网渗透中代理细谈" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://example.com/2024/05/31/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E4%B8%AD%E4%BB%A3%E7%90%86%E7%BB%86%E8%B0%88/" data-id="cuidzoss1fKYDRrLPc3U_fQkP" data-title="内网渗透中代理细谈" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
