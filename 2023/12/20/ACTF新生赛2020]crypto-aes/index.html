@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>ACTF新生赛2020]crypto-aes | demoAlitalia的blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="tags: [笔记]1、[ACTF新生赛2020]crypto-aespython3环境  下载附件后，有两个文件，一个py,一个txt    首先了解一下AES（非对称加密（加解密使用同一种密钥））如何加密的（python3.11环境实现）  AES加密限制：  ​                  3、在Python中进行AES加密解密时，所传入的密文、明文、秘钥、iv偏移量、都需要是byt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ACTF新生赛2020]crypto-aes">
+<meta property="og:url" content="http://example.com/2023/12/20/ACTF%E6%96%B0%E7%94%9F%E8%B5%9B2020%5Dcrypto-aes/index.html">
+<meta property="og:site_name" content="demoAlitalia的blog">
+<meta property="og:description" content="tags: [笔记]1、[ACTF新生赛2020]crypto-aespython3环境  下载附件后，有两个文件，一个py,一个txt    首先了解一下AES（非对称加密（加解密使用同一种密钥））如何加密的（python3.11环境实现）  AES加密限制：  ​                  3、在Python中进行AES加密解密时，所传入的密文、明文、秘钥、iv偏移量、都需要是byt">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="c:\Users\Lu\AppData\Roaming\Typora\typora-user-images\image-20231220111722255.png">
+<meta property="og:image" content="https://ask.qcloudimg.com/http-save/yehe-8223537/57e7eb3c79e2782f202b440bcd4cbbe6.png">
+<meta property="og:image" content="c:\Users\Lu\AppData\Roaming\Typora\typora-user-images\image-20231220125658495.png">
+<meta property="og:image" content="c:\Users\Lu\AppData\Roaming\Typora\typora-user-images\image-20231220154619203.png">
+<meta property="article:published_time" content="2023-12-20T08:21:53.000Z">
+<meta property="article:modified_time" content="2026-05-07T09:51:12.447Z">
+<meta property="article:author" content="zeropioneer">
+<meta property="article:tag" content="笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:\Users\Lu\AppData\Roaming\Typora\typora-user-images\image-20231220111722255.png">
+  
+    <link rel="alternate" href="/atom.xml" title="demoAlitalia的blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">demoAlitalia的blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-ACTF新生赛2020]crypto-aes" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/12/20/ACTF%E6%96%B0%E7%94%9F%E8%B5%9B2020%5Dcrypto-aes/" class="article-date">
+  <time class="dt-published" datetime="2023-12-20T08:21:53.000Z" itemprop="datePublished">2023-12-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      ACTF新生赛2020]crypto-aes
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <hr>
+<h2 id="tags-笔记"><a href="#tags-笔记" class="headerlink" title="tags: [笔记]"></a>tags: [笔记]</h2><h3 id="1、-ACTF新生赛2020-crypto-aes"><a href="#1、-ACTF新生赛2020-crypto-aes" class="headerlink" title="1、[ACTF新生赛2020]crypto-aes"></a>1、[ACTF新生赛2020]crypto-aes</h3><p>python3环境</p>
+<ul>
+<li><p>下载附件后，有两个文件，一个py,一个txt</p>
+</li>
+<li><p><img src="C:\Users\Lu\AppData\Roaming\Typora\typora-user-images\image-20231220111722255.png" alt="image-20231220111722255"></p>
+</li>
+<li><p>首先了解一下AES（非对称加密（加解密使用同一种密钥））如何加密的（python3.11环境实现）</p>
+</li>
+<li><p>AES加密限制：</p>
+<ul>
+<li><p>​                  3、在Python中进行AES加密解密时，所传入的密文、明文、秘钥、iv偏移量、都需要是bytes（字节型）数据。python 在构建aes对象时也&#x3D;&#x3D;只能接受bytes类型数据&#x3D;&#x3D;。</p>
+</li>
+<li><p>​                  4、当秘钥，iv偏移量，待加密的明文，字节长度不够16字节或者16字节倍数的时候需要进行补全。</p>
+</li>
+<li><p>​                  5、CBC模式需要重新生成AES对象，为了防止这类错误，我写代码无论是什么模式都重新生成AES对象。</p>
+<ul>
+<li><p>python中bytes类型数据与中文的转换。Tips:utf8一个中文三个字节，gbk一个中文两个字节。</p>
+</li>
+<li><pre><code class="language-python">key = &quot;中文数据&quot;   #中文数据
+key_b = key.encode()  #转换成字节型数据
+print(key_b)
+print(key_b.decode()) #字节型数据转换成中文数据
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">      ![image-20231220112845941](C:\Users\Lu\AppData\Roaming\Typora\typora-user-images\image-20231220112845941.png)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">- 读一下aes.py的代码</span><br><span class="line"></span><br><span class="line">- ```python</span><br><span class="line">  from Cryptodome.Cipher import AES</span><br><span class="line">  import os</span><br><span class="line">  import gmpy2</span><br><span class="line">  from flag import FLAG</span><br><span class="line">  from Cryptodome.Util.number import *</span><br><span class="line">  </span><br><span class="line">  def main():</span><br><span class="line">      key = os.urandom(2) * 16  # 生成一个随机的密钥，长度为32字节（256位）</span><br><span class="line">      iv = os.urandom(16)  # 生成一个随机的初始化向量，长度为16字节（128位）</span><br><span class="line">      print(bytes_to_long(key) ^ bytes_to_long(iv))  # 将密钥和初始化向量转换为长整数，并执行异或操作，然后打印结果</span><br><span class="line">      aes = AES.new(key, AES.MODE_CBC, iv)  # 使用密钥、模式（CBC）和初始化向量创建一个新的AES加密对象</span><br><span class="line">      enc_flag = aes.encrypt(FLAG)  # 使用AES加密对象对FLAG进行加密，并将加密后的结果存储在enc_flag变量中</span><br><span class="line">      print(enc_flag)  # 打印加密后的FLAG</span><br><span class="line">  </span><br><span class="line">  if __name__ == &quot;__main__&quot;:</span><br><span class="line">      main()  # 如果当前模块是主模块，则调用main函数</span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li></li>
+<li><p>异或图解</p>
+</li>
+<li><p><img src="https://ask.qcloudimg.com/http-save/yehe-8223537/57e7eb3c79e2782f202b440bcd4cbbe6.png" alt="异或运算（XOR）[通俗易懂]"></p>
+</li>
+<li><p>仅异或了低16位。</p>
+</li>
+<li><p><img src="C:\Users\Lu\AppData\Roaming\Typora\typora-user-images\image-20231220125658495.png" alt="image-20231220125658495"></p>
+<p>在原题的加密文件aes.py中key和iv仅异或了低16字节，key的高16字节是不变的，所有由aes.py中key是生成来看，获取了key的高16字节，便获取了key的256位。</p>
+<p><img src="C:\Users\Lu\AppData\Roaming\Typora\typora-user-images\image-20231220154619203.png" alt="image-20231220154619203"></p>
+<p>然后通过key的低位与xor的低位进行异或得到的结果就是aes.py中的iv</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/12/20/ACTF%E6%96%B0%E7%94%9F%E8%B5%9B2020%5Dcrypto-aes/" data-id="cuidSB1AWjZmfprTtHti5BvMS" data-title="ACTF新生赛2020]crypto-aes" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/05/31/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E4%B8%AD%E4%BB%A3%E7%90%86%E7%BB%86%E8%B0%88/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          内网渗透中代理细谈
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/08/26/%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">数据安全风险评估</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">笔记</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">七月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">六月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">五月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">十二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">八月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">二月 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/07/17/%E7%8E%84%E6%9C%BA%E5%BA%94%E6%80%A5%E9%9D%B6%E5%9C%BA/">玄机应急靶场</a>
+          </li>
+        
+          <li>
+            <a href="/2024/07/16/Nacos%200day%20%E5%A4%8D%E7%8E%B0/">Nacos 0day 复现</a>
+          </li>
+        
+          <li>
+            <a href="/2024/06/25/%E5%9F%BA%E4%BA%8E%E6%97%A0%E7%BA%BF%E7%BD%91%E5%8D%A1%E7%9B%91%E5%90%AC%E7%9A%84WIFI%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/">基于无线网卡监听的WIFI暴力破解</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/31/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E4%B8%AD%E4%BB%A3%E7%90%86%E7%BB%86%E8%B0%88/">内网渗透中代理细谈</a>
+          </li>
+        
+          <li>
+            <a href="/2023/12/20/ACTF%E6%96%B0%E7%94%9F%E8%B5%9B2020%5Dcrypto-aes/">ACTF新生赛2020]crypto-aes</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2026 zeropioneer<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

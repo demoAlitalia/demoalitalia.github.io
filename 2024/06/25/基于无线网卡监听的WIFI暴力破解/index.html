@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>基于无线网卡监听的WIFI暴力破解 | demoAlitalia的blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="tags: [笔记]基于无线网卡监听的WIFI暴力破解1、用到的工具 kali(Aircrack-ng) 一块无线监听网卡  ![一块无线监听网卡](F:\原E盘\迅雷下载\web security  study note\浅谈WIFI破解的利用场景及手法\一块无线监听网卡-17181092259909.jpg) 2、使用场景 没流量了 近源爆破 esp-8266——&gt;wifi钓鱼 待添加">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于无线网卡监听的WIFI暴力破解">
+<meta property="og:url" content="http://example.com/2024/06/25/%E5%9F%BA%E4%BA%8E%E6%97%A0%E7%BA%BF%E7%BD%91%E5%8D%A1%E7%9B%91%E5%90%AC%E7%9A%84WIFI%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/index.html">
+<meta property="og:site_name" content="demoAlitalia的blog">
+<meta property="og:description" content="tags: [笔记]基于无线网卡监听的WIFI暴力破解1、用到的工具 kali(Aircrack-ng) 一块无线监听网卡  ![一块无线监听网卡](F:\原E盘\迅雷下载\web security  study note\浅谈WIFI破解的利用场景及手法\一块无线监听网卡-17181092259909.jpg) 2、使用场景 没流量了 近源爆破 esp-8266——&gt;wifi钓鱼 待添加">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-06-25T06:40:55.000Z">
+<meta property="article:modified_time" content="2026-05-07T09:50:34.035Z">
+<meta property="article:author" content="zeropioneer">
+<meta property="article:tag" content="笔记">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="demoAlitalia的blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">demoAlitalia的blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-基于无线网卡监听的WIFI暴力破解" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/06/25/%E5%9F%BA%E4%BA%8E%E6%97%A0%E7%BA%BF%E7%BD%91%E5%8D%A1%E7%9B%91%E5%90%AC%E7%9A%84WIFI%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/" class="article-date">
+  <time class="dt-published" datetime="2024-06-25T06:40:55.000Z" itemprop="datePublished">2024-06-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      基于无线网卡监听的WIFI暴力破解
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <hr>
+<h2 id="tags-笔记"><a href="#tags-笔记" class="headerlink" title="tags: [笔记]"></a>tags: [笔记]</h2><h1 id="基于无线网卡监听的WIFI暴力破解"><a href="#基于无线网卡监听的WIFI暴力破解" class="headerlink" title="基于无线网卡监听的WIFI暴力破解"></a>基于无线网卡监听的WIFI暴力破解</h1><h4 id="1、用到的工具"><a href="#1、用到的工具" class="headerlink" title="1、用到的工具"></a>1、用到的工具</h4><ul>
+<li>kali(Aircrack-ng)</li>
+<li>一块无线监听网卡</li>
+</ul>
+<p>![一块无线监听网卡](F:\原E盘\迅雷下载\web security  study note\浅谈WIFI破解的利用场景及手法\一块无线监听网卡-17181092259909.jpg)</p>
+<h4 id="2、使用场景"><a href="#2、使用场景" class="headerlink" title="2、使用场景"></a>2、使用场景</h4><ul>
+<li><del>没流量了</del></li>
+<li>近源爆破</li>
+<li>esp-8266——&gt;wifi钓鱼</li>
+<li>待添加</li>
+</ul>
+<h4 id="3、操作手法"><a href="#3、操作手法" class="headerlink" title="3、操作手法"></a>3、操作手法</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">一插二看三爆破</span><br></pre></td></tr></table></figure>
+
+<p>1、连接监听网卡——物理插入</p>
+<p>![连接虚拟网卡-物理插入](F:\原E盘\迅雷下载\web security  study note\浅谈WIFI破解的利用场景及手法\连接虚拟网卡-物理插入.jpg)</p>
+<p>2、连接虚拟网卡——逻辑插入</p>
+<ul>
+<li>因为kali用的虚拟机，所以此时需要在虚拟机vmware中重新连接一次</li>
+</ul>
+<p>  ![kali-wifi网卡配置](F:\原E盘\迅雷下载\web security  study note\浅谈WIFI破解的利用场景及手法\kali-wifi网卡配置.png)</p>
+<p>3、ifconfig 查看是监听网卡否插入，观察是否出现wlan0，airmon-ng  查看网卡状态</p>
+<p>![监听网卡](F:\原E盘\迅雷下载\web security  study note\浅谈WIFI破解的利用场景及手法\监听网卡.png)</p>
+<p>![查看当前可用监听网卡](F:\原E盘\迅雷下载\web security  study note\浅谈WIFI破解的利用场景及手法\查看当前可用监听网卡.png)</p>
+<p>4、airmon-ng start waln0 开启监听模式</p>
+<p>![开启监听](F:\原E盘\迅雷下载\web security  study note\浅谈WIFI破解的利用场景及手法\开启监听.png)</p>
+<p> 此时，再次执行ifconfig命令，可以看到网卡已经变为wlan0mon，代表已经开启监听。</p>
+<p>![可以看到已开启监听模式](F:\原E盘\迅雷下载\web security  study note\浅谈WIFI破解的利用场景及手法\可以看到已开启监听模式.png)</p>
+<p>5、airodump-ng wlan0mon  开始扫描设备，探测周围存活可用网络。（我的这个监听网卡仅能探测2.4G网络的，硬件不同，能探测到的频率也不同），随后确定要破解的wifi的bissd 和 ch 和 essid （目前大多数wifi都是wpa2加密的）</p>
+<p>![image-20240611204515550](F:\原E盘\迅雷下载\web security  study note\浅谈WIFI破解的利用场景及手法\image-20240611204515550.png)</p>
+<ul>
+<li>常见的WIFI加密模式</li>
+</ul>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">WEP            太容易被攻击，Wi-Fi 联盟在 2004 年正式将其退役，RC4算法</span><br><span class="line">WPA		       WEP的升级版，底层校验机制一般，使用的TKIP算法</span><br><span class="line">WPA2           采用了AES加密和使用密码块链接消息身份验证代码协议（CCMP）的模式。</span><br><span class="line">WPA3           18年提出，使用的算法为AES-GCMP，目前来看较为安全</span><br></pre></td></tr></table></figure>
+
+<p>6、准备抓取握手包</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">airodump-ng --ivs --bssid 对应ID -w 输出位置 -c 对应信道 wlan0mon</span><br><span class="line">airodump-ng  -c 信道 --bssid 对应id -w 输出位置 wlan0mon</span><br></pre></td></tr></table></figure>
+
+<p>![抓取握手包](F:\原E盘\迅雷下载\web security  study note\浅谈WIFI破解的利用场景及手法\抓取握手包.png)</p>
+<p>![抓取握手包2](F:\原E盘\迅雷下载\web security  study note\浅谈WIFI破解的利用场景及手法\抓取握手包2.png)</p>
+<p>7、如果抓不到握手包，就强制连接把对方踢下线，对方会重新代着正确的密码去连接，我们此时就会抓到正确的握手包。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aireplay-ng -0 1 -a C8:3A:35:70:21:61 -c 5C:F7:C3:92:0A:DD wlan0mon</span><br></pre></td></tr></table></figure>
+
+<p>​	-0 模式，后面跟你要攻击的次数我给的是20，如果过大对方则会一直连接不上。</p>
+<p>​	-a 无线APmac地址</p>
+<p>​	-c 客户端mac地址</p>
+<p>![强制连接抓到握手包](F:\原E盘\迅雷下载\web security  study note\浅谈WIFI破解的利用场景及手法\强制连接抓到握手包.png)</p>
+<p>8、利用字典爆破握手包</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aircrack-ng  -w 字典路径  握手包路径</span><br></pre></td></tr></table></figure>
+
+<p>![撞库成功](F:\原E盘\迅雷下载\web security  study note\浅谈WIFI破解的利用场景及手法\撞库成功.png)</p>
+<h4 id="4、参考连接"><a href="#4、参考连接" class="headerlink" title="4、参考连接"></a>4、参考连接</h4><p>0x01:<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2028958">https://cloud.tencent.com/developer/article/2028958</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/06/25/%E5%9F%BA%E4%BA%8E%E6%97%A0%E7%BA%BF%E7%BD%91%E5%8D%A1%E7%9B%91%E5%90%AC%E7%9A%84WIFI%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/" data-id="cuidQ1n3yQvndzoClH8-qQA_T" data-title="基于无线网卡监听的WIFI暴力破解" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/07/16/Nacos%200day%20%E5%A4%8D%E7%8E%B0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          Nacos 0day 复现
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/05/31/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E4%B8%AD%E4%BB%A3%E7%90%86%E7%BB%86%E8%B0%88/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">内网渗透中代理细谈</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">笔记</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">七月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">六月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">五月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">十二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">八月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">二月 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/07/17/%E7%8E%84%E6%9C%BA%E5%BA%94%E6%80%A5%E9%9D%B6%E5%9C%BA/">玄机应急靶场</a>
+          </li>
+        
+          <li>
+            <a href="/2024/07/16/Nacos%200day%20%E5%A4%8D%E7%8E%B0/">Nacos 0day 复现</a>
+          </li>
+        
+          <li>
+            <a href="/2024/06/25/%E5%9F%BA%E4%BA%8E%E6%97%A0%E7%BA%BF%E7%BD%91%E5%8D%A1%E7%9B%91%E5%90%AC%E7%9A%84WIFI%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/">基于无线网卡监听的WIFI暴力破解</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/31/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E4%B8%AD%E4%BB%A3%E7%90%86%E7%BB%86%E8%B0%88/">内网渗透中代理细谈</a>
+          </li>
+        
+          <li>
+            <a href="/2023/12/20/ACTF%E6%96%B0%E7%94%9F%E8%B5%9B2020%5Dcrypto-aes/">ACTF新生赛2020]crypto-aes</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2026 zeropioneer<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
