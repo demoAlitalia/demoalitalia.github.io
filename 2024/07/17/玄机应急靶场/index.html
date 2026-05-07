@@ -13,19 +13,19 @@
 <meta property="og:site_name" content="demoAlitalia的blog">
 <meta property="og:description" content="玄机应急靶场一、第六章 流量特征分析-waf 上的截获的黑客攻击流量1234567题：应急响应工程师小徐在 waf 上下载了一段黑客的攻击流量，请你分析黑客的攻击流量，并且找到对应的关键信息提供给应急小组协助修复漏洞1.黑客成功登录系统的密码 flag&#123;xxxxxxxxxxxxxxx&#125;2.黑客发现的关键字符串 flag&#123;xxxxxxxxxxxxxxxxxxxxxxxx">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/images%5C%E7%8E%84%E6%9C%BA%E5%BA%94%E6%80%A5%E9%9D%B6%E5%9C%BA%5C1.png">
+<meta property="og:image" content="http://example.com/images/%E7%8E%84%E6%9C%BA%E5%BA%94%E6%80%A5%E9%9D%B6%E5%9C%BA/1.png">
 <meta property="og:image" content="http://example.com/images/2.png">
-<meta property="og:image" content="http://example.com/images%5C%E7%8E%84%E6%9C%BA%E5%BA%94%E6%80%A5%E9%9D%B6%E5%9C%BA%5C3.png">
-<meta property="og:image" content="http://example.com/images%5C%E7%8E%84%E6%9C%BA%E5%BA%94%E6%80%A5%E9%9D%B6%E5%9C%BA%5C3.1.png">
-<meta property="og:image" content="http://example.com/images%5C%E7%8E%84%E6%9C%BA%E5%BA%94%E6%80%A5%E9%9D%B6%E5%9C%BA%5C3.2.png">
-<meta property="og:image" content="http://example.com/images%5C%E7%8E%84%E6%9C%BA%E5%BA%94%E6%80%A5%E9%9D%B6%E5%9C%BA%5C4.png">
-<meta property="og:image" content="http://example.com/images%5C%E7%8E%84%E6%9C%BA%E5%BA%94%E6%80%A5%E9%9D%B6%E5%9C%BA%5C5.png">
+<meta property="og:image" content="http://example.com/images/%E7%8E%84%E6%9C%BA%E5%BA%94%E6%80%A5%E9%9D%B6%E5%9C%BA/3.png">
+<meta property="og:image" content="http://example.com/images/%E7%8E%84%E6%9C%BA%E5%BA%94%E6%80%A5%E9%9D%B6%E5%9C%BA/3.1.png">
+<meta property="og:image" content="http://example.com/images/%E7%8E%84%E6%9C%BA%E5%BA%94%E6%80%A5%E9%9D%B6%E5%9C%BA/3.2.png">
+<meta property="og:image" content="http://example.com/images/%E7%8E%84%E6%9C%BA%E5%BA%94%E6%80%A5%E9%9D%B6%E5%9C%BA/4.png">
+<meta property="og:image" content="http://example.com/images/%E7%8E%84%E6%9C%BA%E5%BA%94%E6%80%A5%E9%9D%B6%E5%9C%BA/5.png">
 <meta property="article:published_time" content="2024-07-16T18:15:12.000Z">
-<meta property="article:modified_time" content="2026-05-07T10:35:40.989Z">
+<meta property="article:modified_time" content="2026-05-07T10:56:47.634Z">
 <meta property="article:author" content="zeropioneer">
 <meta property="article:tag" content="笔记">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/images%5C%E7%8E%84%E6%9C%BA%E5%BA%94%E6%80%A5%E9%9D%B6%E5%9C%BA%5C1.png">
+<meta name="twitter:image" content="http://example.com/images/%E7%8E%84%E6%9C%BA%E5%BA%94%E6%80%A5%E9%9D%B6%E5%9C%BA/1.png">
   
     <link rel="alternate" href="/atom.xml" title="demoAlitalia的blog" type="application/atom+xml">
   
@@ -110,39 +110,39 @@
 <li>第一小问</li>
 </ul>
 <p>通过wireshark分析pcap包，直接过滤条件选择&#x3D;“http.request.method&#x3D;&#x3D;POST”</p>
-<p><img src="/../images%5C%E7%8E%84%E6%9C%BA%E5%BA%94%E6%80%A5%E9%9D%B6%E5%9C%BA%5C1.png" alt="1"></p>
+<p><img src="/../images/%E7%8E%84%E6%9C%BA%E5%BA%94%E6%80%A5%E9%9D%B6%E5%9C%BA/1.png" alt="1"></p>
 <p>我们观察登录路径，找到login.php关键词。其实在这里还是能看到好多POST login.php的报文。我们通过wireshark默认的时间排序，去找到最后仍然在post login.php的包，去尝试回答flag。那如果想更精准的确定是哪个包的话，我们可以通过追踪这条数据流，去看这条数据流的上下报文，通过观察目标机和发起机的响应报文判断是否成功。</p>
 <p><img src="/../images/2.png" alt="2"></p>
 <p>正确答案：admin!@#pass123</p>
-<p><img src="/../images%5C%E7%8E%84%E6%9C%BA%E5%BA%94%E6%80%A5%E9%9D%B6%E5%9C%BA%5C3.png" alt="3"></p>
+<p><img src="/../images/%E7%8E%84%E6%9C%BA%E5%BA%94%E6%80%A5%E9%9D%B6%E5%9C%BA/3.png" alt="3"></p>
 <ul>
 <li>第二小问</li>
 </ul>
 <p>  依据上一问，找到攻击者成功拿到密码登录的信息，根据wireshark依时间排序的流量继续看，该数据包是在No.733517。我们去过滤http协议，然后找到733517去观察前后数据包信息。</p>
-<p>  <img src="/../images%5C%E7%8E%84%E6%9C%BA%E5%BA%94%E6%80%A5%E9%9D%B6%E5%9C%BA%5C3.1.png" alt="3.1"></p>
+<p>  <img src="/../images/%E7%8E%84%E6%9C%BA%E5%BA%94%E6%80%A5%E9%9D%B6%E5%9C%BA/3.1.png" alt="3.1"></p>
 <p>  我们此时找到No.733517，去查看后续hack机-192.168.94.59和目标机-192.168.32.189的请求报文和回显报文，尽量多关注回显报文。一点一点找，看到可以flag，拿去尝试，拿下。</p>
-<p>  <img src="/../images%5C%E7%8E%84%E6%9C%BA%E5%BA%94%E6%80%A5%E9%9D%B6%E5%9C%BA%5C3.2.png" alt="3.2"></p>
+<p>  <img src="/../images/%E7%8E%84%E6%9C%BA%E5%BA%94%E6%80%A5%E9%9D%B6%E5%9C%BA/3.2.png" alt="3.2"></p>
 <ul>
 <li><p>第三小问</p>
 <p>顺着第二小问的思路，继续往下看。图片中可以看到，在No.734555和No.734560是有POST a.php这个数据的，应该是一个webshell马。通过马子读到了database的配置信息，其中包含dbpass。</p>
-<p>![3.4](..&#x2F;images\玄机应急靶场\第六章 流量特征分析-waf 上的截获的黑客攻击流量\3.4.png)</p>
+<p>![3.4](..&#x2F;images&#x2F;玄机应急靶场&#x2F;第六章 流量特征分析-waf 上的截获的黑客攻击流量&#x2F;3.4.png)</p>
 </li>
 </ul>
-<p>![3.3](..&#x2F;images\玄机应急靶场\第六章 流量特征分析-waf 上的截获的黑客攻击流量\3.3.png)</p>
+<p>![3.3](..&#x2F;images&#x2F;玄机应急靶场&#x2F;第六章 流量特征分析-waf 上的截获的黑客攻击流量&#x2F;3.3.png)</p>
 <ul>
 <li><p>投机</p>
 <p>利用工具解决——&gt;CTF流量分析</p>
 </li>
 </ul>
-<p><img src="/../images%5C%E7%8E%84%E6%9C%BA%E5%BA%94%E6%80%A5%E9%9D%B6%E5%9C%BA%5C4.png" alt="4"></p>
+<p><img src="/../images/%E7%8E%84%E6%9C%BA%E5%BA%94%E6%80%A5%E9%9D%B6%E5%9C%BA/4.png" alt="4"></p>
 <p>2、flag{87b7cb79481f317bde90c116cf36084b}</p>
-<p><img src="/../images%5C%E7%8E%84%E6%9C%BA%E5%BA%94%E6%80%A5%E9%9D%B6%E5%9C%BA%5C5.png" alt="5"></p>
+<p><img src="/../images/%E7%8E%84%E6%9C%BA%E5%BA%94%E6%80%A5%E9%9D%B6%E5%9C%BA/5.png" alt="5"></p>
 <p>3、flag{e667jUPvJjXHvEUv}</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/07/17/%E7%8E%84%E6%9C%BA%E5%BA%94%E6%80%A5%E9%9D%B6%E5%9C%BA/" data-id="cuidv4F3jWpSgkTeVmaPM7yji" data-title="玄机应急靶场" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://example.com/2024/07/17/%E7%8E%84%E6%9C%BA%E5%BA%94%E6%80%A5%E9%9D%B6%E5%9C%BA/" data-id="cuidbDxFTe7TxRpuHo66Wk32r" data-title="玄机应急靶场" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
