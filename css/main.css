@@ -1254,7 +1254,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #f5ff4a;
+    background: #ee4a8c;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -2711,6 +2711,20 @@ a {
 }
 a:hover {
   color: var(--color-link-hover);
+}
+.sticky-divider {
+  border: none;
+  height: 2px;
+  background: linear-gradient(to right, var(--color-primary), transparent);
+  margin: 20px 0 30px;
+}
+.site-author-image {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  object-position: 50% 15%;
+  border-radius: 50% !important;
+  border: 3px solid var(--color-primary) !important;
 }
 .header-inner {
   border-radius: 0 0 var(--radius-lg) var(--radius-lg);
