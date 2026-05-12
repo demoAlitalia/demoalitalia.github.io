@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.2">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 8.1.2">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
@@ -18,7 +17,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":"auto","version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12,"width":280,"sticky":true},"hljswrap":true,"codeblock":{"theme":{"light":"github","dark":"github-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null,"show_result":true},"fold":{"enable":false,"height":200},"language":false,"line_number":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null,"enable":false,"provider":"valine"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12,"width":280,"sticky":true},"hljswrap":true,"codeblock":{"theme":{"light":"github","dark":"github-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null,"show_result":true},"fold":{"enable":false,"height":200},"language":false,"line_number":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null,"enable":false,"provider":"valine"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
 
     <meta name="description" content="1、[ACTF新生赛2020]crypto-aespython3环境  下载附件后，有两个文件，一个py,一个txt    首先了解一下AES（非对称加密（加解密使用同一种密钥））如何加密的（python3.11环境实现）  AES加密限制：  ​                  3、在Python中进行AES加密解密时，所传入的密文、明文、秘钥、iv偏移量、都需要是bytes（字节型）数据。p">
 <meta property="og:type" content="article">
@@ -72,6 +71,7 @@
 
 
 
+<meta name="color-scheme" content="light dark">
 <!-- Simple Icons CDN -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-icons@v11/font/simple-icons.min.css">
   <noscript>
@@ -150,20 +150,21 @@
         </a>
       </div>
       <div class="site-state-item site-state-tags">
+          <a href="/tags/">
         <span class="site-state-item-count">1</span>
-        <span class="site-state-item-name">标签</span>
+        <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
   <div class="links-of-author animated">
       <span class="links-of-author-item">
-        <a href="https://github.com/demoAlitalia" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;demoAlitalia" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+        <a href="https://github.com/demoAlitalia" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;demoAlitalia" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i></a>
       </span>
       <span class="links-of-author-item">
-        <a href="mailto:lu_ferine@163.com" title="邮箱 → mailto:lu_ferine@163.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>邮箱</a>
+        <a href="mailto:lu_ferine@163.com" title="邮箱 → mailto:lu_ferine@163.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
       </span>
       <span class="links-of-author-item">
-        <a href="https://blog.csdn.net/qq_46089119" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_46089119" rel="noopener me" target="_blank"><i class="fa fa-csdn fa-fw"></i>CSDN</a>
+        <a href="https://blog.csdn.net/qq_46089119" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_46089119" rel="noopener me" target="_blank"><i class="fa fa-csdn fa-fw"></i></a>
       </span>
   </div>
 
@@ -326,7 +327,86 @@ print(key_b.decode()) #字节型数据转换成中文数据
       <i class="fa fa-heart"></i>
     </span>
     <span class="author" itemprop="copyrightHolder">demoAlitalia</span>
-  </div>
+  </div><!-- 暗色模式切换按钮 -->
+<script>
+(function() {
+  'use strict';
+
+  var DARK_KEY = 'blog-dark-mode';
+
+  function isDark() {
+    return document.documentElement.classList.contains('dark-mode');
+  }
+
+  function setDark(on) {
+    var cls = document.documentElement.classList;
+    if (on) { cls.add('dark-mode'); }
+    else    { cls.remove('dark-mode'); }
+    localStorage.setItem(DARK_KEY, on ? '1' : '0');
+  }
+
+  // 恢复已保存的状态
+  if (localStorage.getItem(DARK_KEY) === '1') {
+    setDark(true);
+  }
+
+  // 创建切换按钮 DOM
+  function createToggleBtn(floating) {
+    var btn = document.createElement('button');
+    btn.className = floating ? 'dark-toggle-float' : 'dark-toggle';
+    btn.title = '切换深色/浅色模式';
+    btn.innerHTML = isDark() ? '☀️' : '🌙';
+    btn.addEventListener('click', function() {
+      var next = !isDark();
+      setDark(next);
+      btn.innerHTML = next ? '☀️' : '🌙';
+      // 同步更新另一个按钮
+      var others = document.querySelectorAll('.dark-toggle, .dark-toggle-float');
+      others.forEach(function(b) {
+        if (b !== btn) b.innerHTML = next ? '☀️' : '🌙';
+      });
+    });
+    return btn;
+  }
+
+  // 桌面端：插入 sidebar
+  function injectDesktopToggle() {
+    var sidebar = document.querySelector('.links-of-author');
+    if (!sidebar) return;
+    var wrap = document.createElement('div');
+    wrap.className = 'links-of-author-item';
+    var btn = createToggleBtn(false);
+    wrap.appendChild(btn);
+    sidebar.parentNode.insertBefore(wrap, sidebar.nextSibling);
+  }
+
+  // 移动端：浮动按钮
+  function injectMobileToggle() {
+    var btn = createToggleBtn(true);
+    document.body.appendChild(btn);
+  }
+
+  function isMobile() {
+    return window.innerWidth <= 767;
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    if (isMobile()) {
+      injectMobileToggle();
+    }
+    injectDesktopToggle();
+  });
+
+  // 窗口尺寸变化时处理
+  window.addEventListener('resize', function() {
+    var floatBtn = document.querySelector('.dark-toggle-float');
+    if (isMobile() && !floatBtn) {
+      injectMobileToggle();
+    }
+  });
+})();
+</script>
+
 
     </div>
   </footer>
