@@ -17,18 +17,18 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12,"width":280,"sticky":true},"hljswrap":true,"codeblock":{"theme":{"light":"github","dark":"github-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null,"show_result":true},"fold":{"enable":false,"height":200},"language":false,"line_number":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null,"enable":false,"provider":"valine"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"demoalitalia.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12,"width":280,"sticky":true},"hljswrap":true,"codeblock":{"theme":{"light":"github","dark":"github-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null,"show_result":true},"fold":{"enable":false,"height":200},"language":false,"line_number":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null,"enable":false,"provider":"valine"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
 
     <meta property="og:type" content="website">
 <meta property="og:title" content="demoAlitalia的blog">
-<meta property="og:url" content="http://example.com/archives/2023/12/index.html">
+<meta property="og:url" content="https://demoalitalia.github.io/archives/2023/12/index.html">
 <meta property="og:site_name" content="demoAlitalia的blog">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="zeropioneer">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://example.com/archives/2023/12/">
+<link rel="canonical" href="https://demoalitalia.github.io/archives/2023/12/">
 
 
 <script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"archives/2023/12/index.html","title":""}</script>
@@ -150,9 +150,6 @@
         <a href="https://github.com/demoAlitalia" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;demoAlitalia" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i></a>
       </span>
       <span class="links-of-author-item">
-        <a href="mailto:lu_ferine@163.com" title="邮箱 → mailto:lu_ferine@163.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
-      </span>
-      <span class="links-of-author-item">
         <a href="https://blog.csdn.net/qq_46089119" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_46089119" rel="noopener me" target="_blank"><i class="fa fa-csdn fa-fw"></i></a>
       </span>
   </div>
@@ -246,39 +243,23 @@
     setDark(true);
   }
 
-  // 创建切换按钮 DOM
-  function createToggleBtn(floating) {
+  // 创建切换按钮
+  function createToggleBtn() {
     var btn = document.createElement('button');
-    btn.className = floating ? 'dark-toggle-float' : 'dark-toggle';
+    btn.className = 'dark-toggle-float';
     btn.title = '切换深色/浅色模式';
     btn.innerHTML = isDark() ? '☀️' : '🌙';
     btn.addEventListener('click', function() {
       var next = !isDark();
       setDark(next);
       btn.innerHTML = next ? '☀️' : '🌙';
-      // 同步更新另一个按钮
-      var others = document.querySelectorAll('.dark-toggle, .dark-toggle-float');
-      others.forEach(function(b) {
-        if (b !== btn) b.innerHTML = next ? '☀️' : '🌙';
-      });
     });
     return btn;
   }
 
-  // 桌面端：插入 sidebar
-  function injectDesktopToggle() {
-    var sidebar = document.querySelector('.links-of-author');
-    if (!sidebar) return;
-    var wrap = document.createElement('div');
-    wrap.className = 'links-of-author-item';
-    var btn = createToggleBtn(false);
-    wrap.appendChild(btn);
-    sidebar.parentNode.insertBefore(wrap, sidebar.nextSibling);
-  }
-
   // 移动端：浮动按钮
-  function injectMobileToggle() {
-    var btn = createToggleBtn(true);
+  function injectToggle() {
+    var btn = createToggleBtn();
     document.body.appendChild(btn);
   }
 
@@ -288,16 +269,15 @@
 
   document.addEventListener('DOMContentLoaded', function() {
     if (isMobile()) {
-      injectMobileToggle();
+      injectToggle();
     }
-    injectDesktopToggle();
   });
 
   // 窗口尺寸变化时处理
   window.addEventListener('resize', function() {
     var floatBtn = document.querySelector('.dark-toggle-float');
     if (isMobile() && !floatBtn) {
-      injectMobileToggle();
+      injectToggle();
     }
   });
 })();

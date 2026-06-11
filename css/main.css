@@ -1254,7 +1254,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #ff0190;
+    background: #ff30cf;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -2910,27 +2910,6 @@ html.dark-mode .back-to-top {
 html.dark-mode .back-to-top:hover {
   background: #999;
   box-shadow: 0 4px 14px rgba(0,0,0,0.5);
-}
-.dark-toggle {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  cursor: pointer;
-  border-radius: 50%;
-  font-size: 1.1em;
-  transition: var(--transition-fast);
-  background: transparent;
-  border: none;
-  color: var(--color-text-secondary);
-}
-.dark-toggle:hover {
-  background: rgba(0,0,0,0.05);
-  transform: translateY(-2px);
-}
-html.dark-mode .dark-toggle:hover {
-  background: rgba(255,255,255,0.1);
 }
 @media (max-width: 767px) {
   .dark-toggle-float {
